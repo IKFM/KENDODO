@@ -1,1 +1,1 @@
-# KENDODO用
+# KENDODO用test
