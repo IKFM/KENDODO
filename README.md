@@ -1,1 +1,2 @@
-# KENDODO用test
+# KENDODO親フォルダ
+-test
