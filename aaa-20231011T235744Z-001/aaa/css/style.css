@@ -1,0 +1,16 @@
+div {
+    margin: 200px;
+    width: 500px;
+    position:relative;
+}
+.grd{
+    position:absolute;
+    z-index:1;
+    width: 300px;
+    margin: -10px -10px;
+}
+.line{
+    position:absolute;
+    z-index:2;
+    width: 300px;
+}
