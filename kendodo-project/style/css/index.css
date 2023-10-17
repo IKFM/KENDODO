@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     outline: 2px solid rgb(50, 231, 255);
+    font-family: Noto Sans JP;
+    font-style: normal;
 }
 
 :root{
@@ -36,10 +38,8 @@ header {
 }
 /* ロゴマーク */
 .logo img{
-    height: 80px;
-    padding: 0 20px;
-    margin-left: 30px;
-    line-height: 80px;
+    height: 100px;
+    line-height: 100px;
 }
 
 /* ヘッダー内メインリンク */
@@ -128,33 +128,41 @@ main{
     color: var(--color1);
 }
 .catchphrase-section{
-    width: 600px;
-    height: 600px;
+    width: 520px;
+    height: 358px;
     bottom: 0;
     margin-left: 0;
-    padding-top: 700px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-top: 370px;
+    padding-right: 470px;
 }
 .catchphrase-section .about{
     width: 100%;
+    height: 60px;
     word-break: normal;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
 }
 .catchphrase-section .link{
-    width: 100%;
-    text-align: center;
+    display: flex;
+    width: 520px;
+    margin-top: 40px;
+    flex-direction: column;
     align-items: center;
 }
 
+.title{
+    font-size: 64px;
+    font-weight: 700;
+    line-height: normal;
+}
 
 /* 概要欄 */
 .overview-section{
     width: 100%;
     height: 600px;
-}
-.overview-backcolor{
-    width: 100%;
-    height: 100%;
+    margin-top: 180px;
+    color: var(--color3);
     background-color: rgba(204,204,204,0.9);
 }
 .overview-group{
@@ -169,16 +177,11 @@ main{
     vertical-align: middle;
 }
 .overview-img{
-    width: 50%;
-    height: 100%;
-    line-height: 600px;
+    width: 508px;
+    height: 359px;
+    flex-shrink: 0;
 }
-.overview-img img{
-    height: 400px;
-}
-.overview-text{
-    width: 50%;
-}
+
 
 
 
@@ -218,9 +221,7 @@ footer {
     line-height: 20px;
     padding: 15px 20px; 
     text-align: center;
-    font-family: Noto Sans JP;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
     text-decoration: none;
     color: var(--color1);
