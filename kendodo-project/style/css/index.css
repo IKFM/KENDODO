@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    /* outline: 2px solid rgb(50, 231, 255); */
+    outline: 2px solid rgb(50, 231, 255);
 }
 
 :root{
@@ -65,7 +65,12 @@ main{
 .background-group{
     width: 990px;
     height: 100%;
-    margin: 0 auto;
+    margin: 0 auto;    
+}
+.background-item{
+    width: 970px;
+    /* height: 300px; */
+    float: right;
 }
 /* 背景画像・アニメーション表示 */
 .background-image {
@@ -73,7 +78,7 @@ main{
     height: 100%;
     position: absolute;
     top: 0px;
-    margin-top: 50px;
+    margin-top: 150px;
     background-image: url('../svg/silhouette_gradation.svg'); /* 背景画像のパスを指定 */
     background-size: 100% 100%; /* ウィンドウサイズに合わせて伸縮する */
     animation: fade-in 0.8s ease-in-out; /* アニメーションの持続時間を1.0秒に変更 */
@@ -85,7 +90,7 @@ main{
     position: absolute;
     top: 30px;
     padding-left: 20px;
-    margin-top: 50px;
+    margin-top: 150px;
     background-image: url('../svg/silhouette_line.svg'); /* 背景画像のパスを指定 */
     background-size: 100% 100%; /* ウィンドウサイズに合わせて伸縮する */
     animation: fade-in2 0.8s ease-in-out; /* アニメーションの持続時間を1.0秒に変更 */
