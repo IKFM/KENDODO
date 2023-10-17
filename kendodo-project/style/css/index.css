@@ -54,6 +54,8 @@ ul{
 /* メイン部 */
 main{
     width: 100%;
+    min-height: 130vh;
+    /* position: relative; */
 }
 
 /* スタイル付きのコンテナ */
@@ -119,6 +121,7 @@ main{
     }
 }
 
+/* メイン部 */
 .main-area{
     width: 990px; 
     height: 920px;
@@ -127,6 +130,7 @@ main{
     align-items: center;
     color: var(--color1);
 }
+/* タイトル・キャッチコピー */
 .catchphrase-section{
     width: 520px;
     height: 358px;
@@ -134,14 +138,6 @@ main{
     margin-left: 0;
     padding-top: 370px;
     padding-right: 470px;
-}
-.catchphrase-section .about{
-    width: 100%;
-    height: 60px;
-    word-break: normal;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
 }
 .catchphrase-section .link{
     display: flex;
@@ -151,17 +147,26 @@ main{
     align-items: center;
 }
 
+/* メイン部・概要欄のテキスト共通 */
 .title{
     font-size: 64px;
     font-weight: 700;
     line-height: normal;
+}
+.about{
+    width: 100%;
+    height: 60px;
+    word-break: normal;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
 }
 
 /* 概要欄 */
 .overview-section{
     width: 100%;
     height: 600px;
-    margin-top: 180px;
+    margin-top: 140px;
     color: var(--color3);
     background-color: rgba(204,204,204,0.9);
 }
@@ -173,13 +178,20 @@ main{
     align-items: center;
 }
 .overview-item{
-    display: inline-block;
-    vertical-align: middle;
+    /* display: inline-block; */
+    /* vertical-align: middle; */
 }
 .overview-img{
     width: 508px;
     height: 359px;
-    flex-shrink: 0;
+}
+.overview-text{
+    width: 455px;
+    margin-left: 36px;
+    object-fit: cover;
+}
+.overview-text .about{
+    margin-top: 20px;
 }
 
 
@@ -204,14 +216,16 @@ footer {
     width: 100%;
     height: 50px;
     text-align: center;
-    background-color: var(--color2);
     color: var(--color3);
+    background-color: var(--color2);
+
 }
 .footer-item{
     width: 100%;
     line-height: 50px;
-    position: absolute;
+    /* position: absolute; */
 }
+
 
 /* メインページリンク */
 .to-main{
