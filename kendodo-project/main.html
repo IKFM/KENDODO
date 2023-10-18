@@ -6,23 +6,88 @@
     <!-- Title -->
     <title>KENDODO-MAIN</title>
     <!-- Css -->
-    <!-- <link rel="stylesheet" href="./style/css/main.css" /> -->
     <link rel="stylesheet" href="./style/css/index.css" />
+    <link rel="stylesheet" href="./style/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
     <!-- Script -->
-    <script defer src="scripts/script.js"></script>
+    <script defer src="./script/script.js"></script>
 </head>
-<body>
-    <h1>仮ページ</h1>
 
-    <!-- 仮 インデックスリンク -->
-    <div class="to-main">
-        <a href="./index.html"  class="link-group">
-            <span>さっそく極める</span>
-            <img src="./style/svg/sword.svg" alt=""/>
-        </a>
-    </div>
-    
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-section">
+        <!-- ロゴ -->
+        <div class="logo">
+            <a href=".">
+                <img src="./style/svg/logo.svg" alt="">
+            </a>    
+        </div>
+        <nav class="header-main-link">
+            <ul>
+                <li>
+                    <!-- 仮 インデックスリンク -->
+                    <div class="to-main">
+                        <a href="./index.html"  class="link-group">
+                            <span>さっそく極める</span>
+                            <img src="./style/svg/sword.svg" alt=""/>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- メイン部 ここから編集 ↓ -->
+    <main>
+        <section>ここにプルダウンリストと再生・停止ボタン</section>
+        <section>ここにお手本動画とWEBカメラを表示</section>
+        <section>ここにスコア</section>
+
+
+
+        <!-- スコアボード -->
+            <div class="score-board">
+                <div id="score"></div>
+                <div id="good"></div>
+            </div>
+        
+            <!-- ポーズ比較 -->
+            <div class="container">
+                <!-- 動画 -->
+                <div class="left"> 
+                    <video class="video1" id="video1" width="560" height="500" src="./images/video2.mp4" style="position:absolute"></video>
+                    <canvas class="canvas1" id="canvas1" width="560" height="500" style="position:absolute"></canvas> 
+                </div>
+            
+                <!-- ウェブカメラ -->
+                <div class="right">
+                    <video id="video2" width="560" height="500" autoplay muted style="position:absolute"></video>
+                    <canvas id="canvas2" width="560" height="500" style="position:absolute"></canvas>
+                </div> 
+            </div>
+        
+            <!-- ボタン -->
+            <div class="btn-area" >
+                <!-- STARTボタンとSTOPボタン -->
+                <div>
+                    <button id="start-button">START</button>
+                    <button id="stop-button">STOP</button>
+                </div>
+            </div>
+
+
+    </main>
+    <!-- ここまで編集 ↑ -->
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-item">
+            <p>© 2023 IKFM</p>
+        </div>
+    </footer>
+
 </body>
 </html>
