@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Title -->
-    <title>KENDODO-MAIN</title>
+    <title>KENDODO-TOP</title>
     <!-- Css -->
     <link rel="stylesheet" href="./style/css/index.css" />
-    <link rel="stylesheet" href="./style/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
     <!-- Script -->
     <script defer src="./script/script.js"></script>
 </head>
-
 <body>
     <!-- ヘッダー -->
     <header>
@@ -42,7 +40,30 @@
 
     <!-- メイン部 ここから編集 ↓ -->
     <main>
-        <section>ここにプルダウンリストと再生・停止ボタン</section>
+        <section class="tentative-1">
+            <h1>ここにプルダウンリストと再生・停止ボタン</h1>
+            <!-- お手本選択 -->
+            <div class="select-model">
+                <select name="model-video" id="">
+                    <option value="">お手本１</option>
+                    <option value="">お手本２</option>
+                    <option value="">お手本３</option>
+                    <option value="">お手本４</option>
+                    <option value="">お手本５</option>
+                </select>    
+            </div>
+            <!-- 再生・停止ボタン -->
+            <div class="movie-manager">
+                <div>
+                    <button id="start-button">START</button>
+                    <button id="stop-button">STOP</button>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+
         <section>ここにお手本動画とWEBカメラを表示</section>
         <section>ここにスコア</section>
 
@@ -69,14 +90,6 @@
                 </div> 
             </div>
         
-            <!-- ボタン -->
-            <div class="btn-area" >
-                <!-- STARTボタンとSTOPボタン -->
-                <div>
-                    <button id="start-button">START</button>
-                    <button id="stop-button">STOP</button>
-                </div>
-            </div>
 
 
     </main>
