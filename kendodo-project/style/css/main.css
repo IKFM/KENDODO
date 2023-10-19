@@ -16,6 +16,7 @@
 
 body {
     background-color: var(--color3);  
+    height: 1050px;;
 }
 
 /* ヘッダー */
@@ -31,7 +32,7 @@ header {
     backdrop-filter: blur(10px);
 }
 .header-section{
-    width: 1920px; 
+    width: 1450px; 
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -71,19 +72,26 @@ main{
     /* margin-top: 300px; */
 }
 .lesson-area{
-    width: 1920px;
+    width: 1450px;
     margin: 0 auto;
 }
 .select-group{
-    width: 1920px;
+    width: 1450px;
     margin: 0 auto;
     display: flex;
 }
 .select-item{
-    margin: auto;
+    /* margin: auto; */
+}
+.select-item select{
+    width: 640px;
+    text-align-last: center
+}
+.movie-button{
+    margin-left: 170px;
 }
 .lesson-group{
-    width: 1920px;
+    width: 1450px;
     display: flex;
     margin: 0 auto;
 }
@@ -94,14 +102,14 @@ main{
     margin-left: 0;
 }
 .right{
-    margin-right: 0;
+    text-align: right;
 }
 
 .score-section{
     width: 100%;
 }
 .score-board{
-    width: 1920px;
+    width: 1450px;
     margin: 0 auto;
     color: var(--color1);
 
