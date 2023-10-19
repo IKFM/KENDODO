@@ -6,11 +6,13 @@
     <!-- Title -->
     <title>KENDODO-TOP</title>
     <!-- Css -->
-    <link rel="stylesheet" href="./style/css/index.css" />
+    <link rel="stylesheet" href="./style/css/main.css" />
+    <!-- <link rel="stylesheet" href="./style/css/index.css" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
     <!-- Script -->
     <script defer src="./script/script.js"></script>
+    <script defer src="./script/style.js"></script>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -40,56 +42,89 @@
 
     <!-- メイン部 ここから編集 ↓ -->
     <main>
-        <section class="tentative-1">
-            <h1>ここにプルダウンリストと再生・停止ボタン</h1>
-            <!-- お手本選択 -->
-            <div class="select-model">
-                <select name="model-video" id="">
-                    <option value="">お手本１</option>
-                    <option value="">お手本２</option>
-                    <option value="">お手本３</option>
-                    <option value="">お手本４</option>
-                    <option value="">お手本５</option>
-                </select>    
-            </div>
-            <!-- 再生・停止ボタン -->
-            <div class="movie-manager">
-                <div>
-                    <button id="start-button">START</button>
-                    <button id="stop-button">STOP</button>
-                </div>
-            </div>
 
+        <form>
+            <!--画像を配置-->
+            <p><img src="./style/images/kendo1.jpg" width="120" height="120" id="program1" alt=""></p>
+            <!--ドロップダウンメニューが変更されたら関数へ値を渡す-->
+            <p>
+                <select name="channel" size="1" onchange="imgChange(this,program1)">
+                    <option value="0">レッド
+                    <option value="1">オレンジ
+                    <option value="2">グリーン
+                    <option value="3">ブルー
+                    <option value="4">グレー
+                </select>
+            </p>
+            <p><img src="./style/svg/silhouette_gradation.svg" width="120" height="120" id="program2" alt=""></p>
+            <p>
+                <select name="channel" size="1" onchange="imgChange(this,program2)">
+                    <option value="0">レッド
+                    <option value="1">オレンジ
+                    <option value="2">グリーン
+                    <option value="3">ブルー
+                    <option value="4">グレー
+                </select>
+            </p>
+        </form>
+
+        <section class="lesson-section">
+            <h1>ここにお手本動画とWEBカメラを表示</h1>
+            <!-- ポーズ比較 -->
+            <div class="lesson-area">
+                <!-- お手本動画 -->
+                <div class="select-group">
+                    <!-- お手本選択 -->
+                    <div class="select-item">
+                        <select name="select-model" id="">
+                            <option value="0">お手本１</option>
+                            <option value="1">お手本２</option>
+                            <option value="2">お手本３</option>
+                            <option value="3">お手本４</option>
+                            <option value="4">お手本５</option>
+                        </select>    
+                    </div>
+
+                    <!-- 再生・停止ボタン -->
+                    <div class="select-item">
+                        <div class="movie-button">
+                            <button id="start-button">START</button>
+                            <button id="stop-button">STOP</button>
+                        </div>
+                    </div>            
+                </div>
+
+                <div class="lesson-group">
+                    <!-- style="position:absolute" -->
+                    <!-- 動画 -->
+                    <div class="lesson-item">
+                        <div class="left"> 
+                            <video class="video1" id="video1" width="940" src="./video/video.mp4"></video>
+                            <canvas class="canvas1" id="canvas1" width="940"></canvas> 
+                        </div>
+                    </div>
+
+                    <!-- ウェブカメラ -->
+                    <div class="lesson-item">
+                        <div class="right">
+                            <video id="video2" width="940" autoplay muted></video>
+                            <canvas id="canvas2" width="940"></canvas>
+                        </div> 
+                    </div>
+                </div>
+                
             </div>
         </section>
 
 
-        <section>ここにお手本動画とWEBカメラを表示</section>
-        <section>ここにスコア</section>
-
-
-
-        <!-- スコアボード -->
+        <section class="score-section">
+            <h1>ここにスコア</h1>
+            <!-- スコアボード -->
             <div class="score-board">
                 <div id="score"></div>
                 <div id="good"></div>
             </div>
-        
-            <!-- ポーズ比較 -->
-            <div class="container">
-                <!-- 動画 -->
-                <div class="left"> 
-                    <video class="video1" id="video1" width="560" height="500" src="./images/video2.mp4" style="position:absolute"></video>
-                    <canvas class="canvas1" id="canvas1" width="560" height="500" style="position:absolute"></canvas> 
-                </div>
-            
-                <!-- ウェブカメラ -->
-                <div class="right">
-                    <video id="video2" width="560" height="500" autoplay muted style="position:absolute"></video>
-                    <canvas id="canvas2" width="560" height="500" style="position:absolute"></canvas>
-                </div> 
-            </div>
-        
+        </section>
 
 
     </main>
