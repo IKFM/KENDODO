@@ -97,6 +97,15 @@ main{
     margin-right: 0;
 }
 
+.score-section{
+    width: 100%;
+}
+.score-board{
+    width: 1920px;
+    margin: 0 auto;
+    color: var(--color1);
+
+}
 
 /* ↑ ここまで編集 */
 /* フッター */

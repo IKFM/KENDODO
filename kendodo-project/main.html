@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Title -->
-    <title>KENDODO-TOP</title>
+    <title>KENDODO-MAIN</title>
     <!-- Css -->
     <link rel="stylesheet" href="./style/css/main.css" />
     <!-- <link rel="stylesheet" href="./style/css/index.css" /> -->
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
     <!-- Script -->
     <script defer src="./script/script.js"></script>
-    <script defer src="./script/style.js"></script>
+    <script defer src="./script/main.js"></script>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -42,32 +42,6 @@
 
     <!-- メイン部 ここから編集 ↓ -->
     <main>
-
-        <form>
-            <!--画像を配置-->
-            <p><img src="./style/images/kendo1.jpg" width="120" height="120" id="program1" alt=""></p>
-            <!--ドロップダウンメニューが変更されたら関数へ値を渡す-->
-            <p>
-                <select name="channel" size="1" onchange="imgChange(this,program1)">
-                    <option value="0">レッド
-                    <option value="1">オレンジ
-                    <option value="2">グリーン
-                    <option value="3">ブルー
-                    <option value="4">グレー
-                </select>
-            </p>
-            <p><img src="./style/svg/silhouette_gradation.svg" width="120" height="120" id="program2" alt=""></p>
-            <p>
-                <select name="channel" size="1" onchange="imgChange(this,program2)">
-                    <option value="0">レッド
-                    <option value="1">オレンジ
-                    <option value="2">グリーン
-                    <option value="3">ブルー
-                    <option value="4">グレー
-                </select>
-            </p>
-        </form>
-
         <section class="lesson-section">
             <h1>ここにお手本動画とWEBカメラを表示</h1>
             <!-- ポーズ比較 -->
@@ -76,13 +50,14 @@
                 <div class="select-group">
                     <!-- お手本選択 -->
                     <div class="select-item">
-                        <select name="select-model" id="">
-                            <option value="0">お手本１</option>
-                            <option value="1">お手本２</option>
-                            <option value="2">お手本３</option>
-                            <option value="3">お手本４</option>
-                            <option value="4">お手本５</option>
-                        </select>    
+                        <select name="select-movie" id="videoSelect">
+                            <option value="./style/images/kendo1.jpg" selected disabled>お手本を選択</option>
+                            <option value="./video/video.mp4">お手本１</option>
+                            <option value="./video/video1.mp4">お手本２</option>
+                            <option value="./video/video2.mp4">お手本３</option>
+                            <option value="./video/video3.mp4">お手本４</option>
+                            <option value="./video/video4.mp4">お手本５</option>
+                        </select>
                     </div>
 
                     <!-- 再生・停止ボタン -->
@@ -99,7 +74,11 @@
                     <!-- 動画 -->
                     <div class="lesson-item">
                         <div class="left"> 
-                            <video class="video1" id="video1" width="940" src="./video/video.mp4"></video>
+                            <video class="video1" id="video1" width="940" controls>
+                                <source src="" type="video/mp4">
+                            </video>
+                            <img id="image1" src="./style/images/kendo1.jpg" alt="">
+                                                        
                             <canvas class="canvas1" id="canvas1" width="940"></canvas> 
                         </div>
                     </div>
@@ -118,11 +97,11 @@
 
 
         <section class="score-section">
-            <h1>ここにスコア</h1>
             <!-- スコアボード -->
             <div class="score-board">
-                <div id="score"></div>
-                <div id="good"></div>
+                <h1>スコア</h1>
+                <h2 id="score"></h2>
+                <h2 id="good"></h2>
             </div>
         </section>
 
@@ -139,3 +118,4 @@
 
 </body>
 </html>
+

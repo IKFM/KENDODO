@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画の変更</title>
+</head>
+<body>
+    <select id="videoSelect">
+        <option value="./video/video1.mp4">動画1</option>
+        <option value="./video/video2.mp4">動画2</option>
+        <option value="./video/video3.mp4">動画3</option>
+    </select>
+    <br>
+    <video id="videoPlayer" width="400" controls>
+        <source src="./video/video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</body>
+</html>
+
+<script>
+    const videoSelect = document.getElementById("videoSelect");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    videoSelect.addEventListener("change", function () {
+        const selectedVideo = videoSelect.value;
+        videoPlayer.src = selectedVideo;
+        videoPlayer.load();
+    });
+</script>
