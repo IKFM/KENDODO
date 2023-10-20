@@ -64,7 +64,6 @@ main{
 
 
 /* ↓ ここから編集 */
-/* プルダウンリスト 再生・停止 */
 .lesson-section{
     width: 100%;
     height: auto;
@@ -77,19 +76,18 @@ main{
 }
 .select-group{
     width: 1450px;
+    height: 55px;
     margin: 0 auto;
     display: flex;
 }
 .select-item{
-    /* margin: auto; */
+    height: 55px;
 }
 .select-item select{
     width: 640px;
     text-align-last: center
 }
-.movie-button{
-    margin-left: 170px;
-}
+
 .lesson-group{
     width: 1450px;
     display: flex;
@@ -114,6 +112,32 @@ main{
     color: var(--color1);
 
 }
+
+/* 再生・一時停止ボタン */
+.movie-button{
+    margin-left: 170px;
+    display: flex
+}
+.button-group{
+    display: flex;
+}
+button{
+    height: 55px;
+    line-height: 55px;
+    align-items: center;
+    display: flex;
+    padding: 0 20px;
+    margin-right: 6px;
+    background-color: var(--color);
+    color: var(--color1);
+    font-size: 20px;
+    font-weight: 700;
+}
+.button-item img {
+    height: 25px;
+    margin-left: 10px;
+}
+
 
 /* ↑ ここまで編集 */
 /* フッター */

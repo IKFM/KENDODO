@@ -43,13 +43,11 @@
     <!-- メイン部 ここから編集 ↓ -->
     <main>
         <section class="lesson-section">
-            <!-- ポーズ比較 -->
             <div class="lesson-area">
-                <!-- お手本動画 -->
+                <!-- お手本動画選択 -->
                 <div class="select-group">
-                    <!-- お手本選択 -->
-                    <div class="select-item">
-                        <select name="select-movie" id="videoSelect">
+                    <div class="select-item select-movie">
+                        <select name="select" id="videoSelect" unset>
                             <option value="./style/images/kendo1.jpg" selected disabled>お手本を選択</option>
                             <option value="./video/video.mp4">お手本１</option>
                             <option value="./video/video1.mp4">お手本２</option>
@@ -58,15 +56,25 @@
                             <option value="./video/video4.mp4">お手本５</option>
                         </select>
                     </div>
-
-                    <!-- 再生・停止ボタン -->
-                    <div class="select-item">
-                        <div class="movie-button">
-                            <button id="start-button">START</button>
-                            <button id="stop-button">STOP</button>
+                    <!-- お手本動画 再生・一時停止ボタン -->
+                    <div class="select-item movie-button">
+                        <div class="button-group">
+                            <div class="button-item">
+                                <button class="start-button" id="start-button" unset>
+                                    <p>お手本動画を再生</p>
+                                    <img src="./style/svg/start.svg" alt="">
+                                </button>
+                            </div>
+                            <div class="button-item">
+                                <button class="stop-button" id="stop-button" unset>
+                                    <p>お手本動画を一時停止</p>
+                                    <img src="./style/svg/stop.svg" alt="">
+                                </button>
+                            </div>
                         </div>
-                    </div>            
-                </div>
+                    </div>
+                </div>            
+            </div>
 
                 <div class="lesson-group">
                     <!-- style="position:absolute" -->
