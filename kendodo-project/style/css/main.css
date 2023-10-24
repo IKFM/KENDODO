@@ -177,11 +177,34 @@ button{
 }
 .left{
     margin-left: 0;
+    position: relative;
 }
 .right{
     text-align: right;
+    position: relative;
+}
+video{
+    width: 640px;
+    height: 480px;
+}
+canvas{
+    width: 640px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+}
+/* lesson-groupにFlexboxを適用 */
+.lesson-group {
+    display: flex;
+    justify-content: space-between; /* 左右に配置 */
 }
 
+
+
+
+/* スコアボード */
 .score-section{
     width: 100%;
 }
@@ -189,7 +212,6 @@ button{
     width: 1450px;
     margin: 0 auto;
     color: var(--color1);
-
 }
 
 
