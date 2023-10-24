@@ -6,78 +6,76 @@
     <title>動画の変更</title>
 </head>
 <style>
-    body {
-        background: #f2f2f2;
-      }
-      
-      .selectdiv {
-        position: relative;
-        /*Don't really need this just for demo styling*/
-        
-        float: left;
-        min-width: 200px;
-        margin: 50px 33%;
-      }
-      
-      /* IE11 hide native button (thanks Matt!) */
-      select::-ms-expand {
-      display: none;
-      }
-      
-      .selectdiv:after {
-        content: '<>';
-        font: 17px "Consolas", monospace;
-        color: #333;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-        right: 11px;
-        /*Adjust for position however you want*/
-        
-        top: 18px;
-        padding: 0 0 2px;
-        border-bottom: 1px solid #999;
-        /*left line */
-        
-        position: absolute;
-        pointer-events: none;
-      }
-      
-      .selectdiv select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        /* Add some styling */
-        
-        display: block;
+    body{
+        background-color: #351d5c;
+    }
+
+    .select-movie1 {
+        overflow: hidden;
+        width: 90%;
+        margin: 2em auto;
+        text-align: center;
+    }
+    .select-movie1 select {
         width: 100%;
-        max-width: 320px;
-        height: 50px;
-        float: right;
-        margin: 5px 0px;
-        padding: 0px 24px;
-        font-size: 16px;
-        line-height: 1.75;
-        color: #333;
-        background-color: #ffffff;
+        padding-right: 1em;
+        cursor: pointer;
+        text-indent: 0.01px;
+        text-overflow: ellipsis;
+        border: none;
+        outline: none;
+        background: transparent;
         background-image: none;
-        border: 1px solid #cccccc;
-        -ms-word-break: normal;
-        word-break: normal;
-      }
-</style>
+        box-shadow: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .select-movie1 select::-ms-expand {
+        display: none;
+    }
+    .select-movie1.select-movie2 {
+        position: relative;
+        /* border: 1px solid #bbbbbb; */
+        /* border-radius: 2px; */
+        background: #ffffff;
+    }
+    .select-movie1.select-movie2::before {
+        position: absolute;
+        top: 0.8em;
+        right: 0.9em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #1d1717;
+        pointer-events: none;
+    }
+    .select-movie1.select-movie2:after {
+        position: absolute;
+        top: 0;
+        right: 2.5em;
+        bottom: 0;
+        width: 1px;
+        content: '';
+        border-left: 4px solid #211d5f;
+    }
+    .select-movie1.select-movie2 select {
+        padding: 8px 38px 8px 8px;
+        color: #666666;
+    }</style>
+
 <body>
     <!-- セレクトボックス -->
-    <div class="selectdiv">
-        <label>
-            <select>
-                <option selected> Select Box </option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Last long option</option>
-            </select>
-        </label>
+    <div class="select-movie1 select-movie2">
+        <select required>
+            <option value="" hidden>Choose</option>
+            <option value="1">cat</option>
+            <option value="2">dog</option>
+            <option value="3">rabbit</option>
+            <option value="4">squirrel</option>
+        </select>
     </div>
 
     <!-- 動画表示 -->
@@ -96,60 +94,4 @@
 
 <script>
     // セレクトボックス
-    $('.sel').each(function() {
-        $(this).children('select').css('display', 'none');
-        
-        var $current = $(this);
-        
-        $(this).find('option').each(function(i) {
-            if (i == 0) {
-                $current.prepend($('<div>', {
-                class: $current.attr('class').replace(/sel/g, 'sel__box')
-                }));
-                
-                var placeholder = $(this).text();
-                $current.prepend($('<span>', {
-                class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
-                text: placeholder,
-                'data-placeholder': placeholder
-                }));
-                
-                return;
-            }
-            
-            $current.children('div').append($('<span>', {
-                class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
-                text: $(this).text()
-            }));
-            });
-        });
-        
-        // Toggling the `.active` state on the `.sel`.
-        $('.sel').click(function() {
-            $(this).toggleClass('active');
-        });
-        
-        // Toggling the `.selected` state on the options.
-        $('.sel__box__options').click(function() {
-            var txt = $(this).text();
-            var index = $(this).index();
-            
-            $(this).siblings('.sel__box__options').removeClass('selected');
-            $(this).addClass('selected');
-            
-            var $currentSel = $(this).closest('.sel');
-            $currentSel.children('.sel__placeholder').text(txt);
-            $currentSel.children('select').prop('selectedIndex', index + 1);
-        });
-
-
-    // 動画表示
-    const videoSelect = document.getElementById("videoSelect");
-    const videoPlayer = document.getElementById("videoPlayer");
-
-    videoSelect.addEventListener("change", function () {
-        const selectedVideo = videoSelect.value;
-        videoPlayer.src = selectedVideo;
-        videoPlayer.load();
-    });
 </script>

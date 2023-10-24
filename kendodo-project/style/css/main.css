@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    outline: 2px solid rgb(50, 231, 255);
+    /* outline: 2px solid rgb(50, 231, 255); */
     font-family: Noto Sans JP;
     font-style: normal;
 }
@@ -16,7 +16,6 @@
 
 body {
     background-color: var(--color3);  
-    height: 1050px;;
 }
 
 /* ヘッダー */
@@ -30,6 +29,7 @@ header {
     overflow: hidden;
     background-color: rgba(51, 51, 102, 0.5);
     backdrop-filter: blur(10px);
+    z-index: 1000;
 }
 .header-section{
     width: 1450px; 
@@ -79,55 +79,67 @@ main{
 .select-item{
     height: 55px;
 }
+
+/* セレクトボックス */
 .select-item select{
     width: 640px;
-    text-align-last: center
+    text-align-last: center;
 }
-.select-movie{
-    position: relative;
-    float: left;
+.select-movie1 {
+    overflow: hidden;
+    width: 640px;
+    text-align: center;
+}
+.select-movie1 select {
     width: 100%;
-    height: auto;
-    margin: 0 auto;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
-select::-ms-expand {
-display: none;
+.select-movie1 select::-ms-expand {
+    display: none;
 }
-.select-movie:after {
-    content: '< >';
-    font: 17px "Consolas", monospace;
-    color: #333;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    right: 11px;    
-    top: 18px;
-    padding: 0 0 2px;
-    border-bottom: 1px solid #999;
+.select-movie1.select-movie2 {
+    position: relative;
+    background-color: var(--color1);
+}
+.select-movie1.select-movie2::before {
     position: absolute;
+    top: 25px;
+    right: 22px;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--color3);
     pointer-events: none;
 }
-.select-movie select{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
-    width: 640px;
-    max-width: 320px;
-    height: 55px;
-    margin: 5px 0px;
-    padding: 0px 24px;
-    font-size: 16px;
-    line-height: 1.75;
-    color: #333;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    -ms-word-break: normal;
-    word-break: normal;
+.select-movie1.select-movie2:after {
+    position: absolute;
+    top: 0;
+    right: 3.5em;
+    bottom: 0;
+    /* width: 1px; */
+    content: '';
+    border-left: 4px solid var(--color3);
 }
-
+.select-movie1.select-movie2 select {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 55px;
+    text-align: center;
+    color: var(--color3);
+}
 
 /* 再生・一時停止ボタン */
 .movie-button{
@@ -158,7 +170,7 @@ button{
 .lesson-group{
     width: 1450px;
     display: flex;
-    margin: 0 auto;
+    margin: 15px auto 0 auto;
 }
 .lesson-item{
     /* margin: auto; */
@@ -197,27 +209,4 @@ footer {
     /* position: absolute; */
 }
 
-
-/* メインページリンク */
-.to-main{
-    display: flex;
-}
-.to-main a{
-    line-height: 20px;
-    padding: 15px 20px; 
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--color1);
-    background-color: var(--color);
-}
-.to-main .link-group {
-    display: flex;
-    align-items: center;
-}
-.to-main img {
-    width: 30px;
-    margin-left: 10px;
-}
 

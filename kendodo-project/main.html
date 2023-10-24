@@ -24,19 +24,6 @@
                 <img src="./style/svg/logo.svg" alt="">
             </a>    
         </div>
-        <nav class="header-main-link">
-            <ul>
-                <li>
-                    <!-- 仮 インデックスリンク -->
-                    <div class="to-main">
-                        <a href="./index.html"  class="link-group">
-                            <span>さっそく極める</span>
-                            <img src="./style/svg/sword.svg" alt=""/>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
         </div>
     </header>
 
@@ -46,9 +33,10 @@
         <section class="select-section">
             <!-- お手本動画選択 -->
             <div class="select-group">
-                <div class="select-item select-movie">
-                    <select name="select" id="videoSelect" unset>
-                        <option value="./style/images/kendo1.jpg" selected disabled>お手本を選択</option>
+                <div class="select-movie1 select-movie2">
+                    <select id="videoSelect" required>
+                        <!-- <option value="./style/images/kendo1.jpg" selected disabled>お手本を選択</option> -->
+                        <option value="./style/images/kendo1.jpg" hidden>お手本を選択</option>
                         <option value="./video/video.mp4">お手本１</option>
                         <option value="./video/video1.mp4">お手本２</option>
                         <option value="./video/video2.mp4">お手本３</option>
