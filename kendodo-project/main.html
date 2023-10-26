@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
     <!-- Script -->
     <script defer src="./script/script.js"></script>
-    <script defer src="./script/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+
 </head>
 <body>
     <!-- ヘッダー -->
@@ -62,8 +64,6 @@
                     </div>
                 </div>
             </div>   
-            
-            
         </section>
 
         <!-- 動画表示・レッスン部 -->
@@ -73,20 +73,20 @@
                 <!-- 動画 -->
                 <div class="lesson-item">
                     <div class="left"> 
-                        <video class="video1" id="video1">
-                            <source src="" type="video/mp4">
+                        <video class="video1" id="video1" width="640" height="480">
+                            <source src="" type="./video/video/mp4">
                         </video>
-                        <img id="image1" src="./style/images/kendo1.jpg" alt="" width="640">
+                        <img id="image1" src="./style/images/kendo1.jpg" alt=""  width="640" height="480">
                                                     
-                        <canvas class="canvas1" id="canvas1"></canvas> 
+                        <canvas class="canvas1" id="canvas1" width="640" height="480"></canvas> 
                     </div>
                 </div>
 
                 <!-- ウェブカメラ -->
                 <div class="lesson-item">
                     <div class="right">
-                        <video id="video2" autoplay muted></video>
-                        <canvas id="canvas2"></canvas>
+                        <video id="video2" autoplay muted width="640" height="480"></video>
+                        <canvas id="canvas2" width="640" height="480"></canvas>
                     </div>                     
                 </div>
             </div>
