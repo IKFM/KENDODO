@@ -22,6 +22,12 @@ let error; // ポーズの角度誤差を格納する変数。ループ内で計
 let intervalId; // setIntervalメソッドのインターバルIDを格納する変数。ループの停止に使用されます。
 let score = 0; // スコアを格納する変数。正解したポーズの数をカウントします。初期値は0です。
 
+// ページが読み込まれたときに初期化
+window.onload = async function () {
+  const net = await posenet.load();
+  // 以後、`net` を使ってポーズの推定を行います
+};
+
 //ウェブカメラ作動
 navigator.getUserMedia(
   { video: {} },
@@ -96,7 +102,7 @@ video1.addEventListener('play', () => {
     } else {
       target.innerHTML = "　";
     }
-  }, 500);
+  }, 50);
 });
 
 // ループを停止する関数
@@ -201,4 +207,40 @@ function calcPositionAngle(position1, position2) {
 // 2点間の角度を計算
 function calcAngleDegrees(x1, y1, x2, y2) {
   return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+}
+
+
+// main.html
+// お手本動画の選択
+// セレクトボックスの選択時に呼び出される関数
+function changeVideoSource() {
+  const videoSelect = document.getElementById("videoSelect");
+  const video1 = document.getElementById("video1");
+  const image1 = document.getElementById("image1");
+
+  if (video1 && image1) {
+      const selectedSource = videoSelect.value;
+      if (selectedSource === "./style/images/kendo1.jpg") {
+          video1.style.display = "none";
+          image1.style.display = "block";
+      } else {
+          video1.style.display = "block";
+          image1.style.display = "none";
+          video1.src = selectedSource;
+          video1.load();
+      }
+  }
+}
+
+
+// セレクトボックスの選択変更イベントを監視し、関数を呼び出す
+const videoSelect = document.getElementById("videoSelect");
+videoSelect.addEventListener("change", changeVideoSource);
+
+// ページ読み込み時に初期値を確認して画像または動画を表示
+if (videoSelect.value === "./style/images/kendo1.jpg") {
+  const video1 = document.getElementById("video1");
+  const image1 = document.getElementById("image1");
+  video1.style.display = "none";
+  image1.style.display = "block";
 }
