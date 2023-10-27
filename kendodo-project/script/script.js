@@ -185,14 +185,22 @@ function calcAngleError(correct_pose, user_pose) {
 }
 
 // 正解ポーズとユーザポーズの、ある2つのキーポイント間の角度の誤差を計算
-function calcKeypointAngleError(correct_pose, user_pose, num1, num2) {
-  let error = Math.abs(calcKeypointsAngle(correct_pose.keypoints, num1, num2) - calcKeypointsAngle(user_pose.keypoints, num1, num2))
+async function calcKeypointAngleError(correct_pose, user_pose, num1, num2) {
+  const [correctPose, userPose] = await Promise.all([
+    correct_pose, // Assuming correct_pose is a Promise
+    user_pose,    // Assuming user_pose is a Promise
+  ]);
+
+  // Calculate angle error using correctPose and userPose
+  let error = Math.abs(calcKeypointsAngle(correctPose.keypoints, num1, num2) - calcKeypointsAngle(userPose.keypoints, num1, num2));
+
   if (error <= 180) {
     return error;
   } else {
     return 360 - error;
   }
 }
+
 
 // キーポイント[num1]とキーポイント[num2]の角度を計算
 function calcKeypointsAngle(keypoints, num1, num2) {

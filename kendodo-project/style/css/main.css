@@ -14,8 +14,19 @@
     --color3: #333366;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* スクロールバーを非表示にする */
+}
+
 body {
     background-color: var(--color3);  
+    /* display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%; */
+    min-height: 100vh;
 }
 
 /* ヘッダー */
@@ -57,8 +68,10 @@ ul{
 main{
     width: 100%;
     min-height: 130vh;
-    margin-top: 150px;
+    max-height: 1200px;
+    /* margin-top: 150px; */
     /* position: relative; */
+    /* margin-bottom: 0; */
 }
 
 
@@ -68,7 +81,7 @@ main{
 .select-section{
     width: 100%;
     height: auto;
-    margin: 0 auto;
+    margin: 150px auto 0 auto;
 }
 .select-group{
     width: 1450px;
@@ -212,8 +225,6 @@ canvas{
     color: var(--color1);
 }
 
-
-/* ↑ ここまで編集 */
 /* フッター */
 footer {
     width: 100%;
@@ -221,7 +232,10 @@ footer {
     text-align: center;
     color: var(--color3);
     background-color: var(--color2);
-
+    bottom: 0;
+    top: auto;
+    position: absolute;
+    margin-bottom: 0;
 }
 .footer-item{
     width: 100%;
