@@ -89,6 +89,15 @@ video1.addEventListener("error", function (e) {
   // ここでエラーメッセージを表示または処理
 });
 
+function testCanvasClear(test, ctx) {
+  console.log("テスト", test);
+  ctx.clearRect(0, 0, contentWidth1, contentHeight1);
+  test.forEach(({ keypoints }) => {
+    drawKeypoints(keypoints, minPartConfidence, ctx, color1);
+    drawSkeleton(keypoints, minPartConfidence, ctx, color1);
+  });
+};
+
 // お手本動画の選択
 // セレクトボックスの選択時に呼び出される関数
 function changeVideoSource() {

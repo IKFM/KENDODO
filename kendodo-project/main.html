@@ -1,118 +1,175 @@
+<!-- test-- -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <!-- Title -->
-    <title>KENDODO-MAIN</title>
-    <!-- Css -->
-    <link rel="stylesheet" href="./style/css/main.css" />
-    <!-- <link rel="stylesheet" href="./style/css/index.css" /> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400;700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
-    <!-- Script -->
-    <script defer src="./script/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
-
 </head>
+
 <body>
-    <!-- ヘッダー -->
-    <header>
-        <div class="header-section">
-        <!-- ロゴ -->
-        <div class="logo">
-            <a href=".">
-                <img src="./style/svg/logo.svg" alt="">
-            </a>    
+    <div style="display: flex;">
+        <div>
+            <video id="video1" width="360" height="450" autoplay controls>
+                <source src="./video/vide0.mp4" type="video/mp4">
+            </video>
+            <canvas id="canvas1" width="360" height="450"></canvas>
         </div>
+        <div>
+            <video id="video2" width="600" height="450" autoplay controls></video>
+            <canvas id="canvas2" width="600" height="450"></canvas>
         </div>
-    </header>
-
-    <!-- メイン部 ここから編集 ↓ -->
-    <main>
-        <!-- セレクト部 -->
-        <section class="select-section">
-            <!-- お手本動画選択 -->
-            <div class="select-group">
-                <div class="select-movie1 select-movie2">
-                    <select id="videoSelect" required>
-                        <!-- <option value="./style/images/kendo1.jpg" selected disabled>お手本を選択</option> -->
-                        <option value="./style/images/kendo1.jpg" hidden>お手本を選択</option>
-                        <option value="./video/video.mp4">お手本１</option>
-                        <option value="./video/video1.mp4">お手本２</option>
-                        <option value="./video/video2.mp4">お手本３</option>
-                        <option value="./video/video3.mp4">お手本４</option>
-                        <option value="./video/video4.mp4">お手本５</option>
-                    </select>
-                </div>
-                <!-- お手本動画 再生・一時停止ボタン -->
-                <div class="select-item movie-button">
-                    <div class="button-group">
-                        <div class="button-item">
-                            <button class="start-button" id="start-button" unset>
-                                <p>お手本動画を再生</p>
-                                <img src="./style/svg/start.svg" alt="">
-                            </button>
-                        </div>
-                        <div class="button-item">
-                            <button class="stop-button" id="stop-button" unset>
-                                <p>お手本動画を一時停止</p>
-                                <img src="./style/svg/stop.svg" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>   
-        </section>
-
-        <!-- 動画表示・レッスン部 -->
-        <section class="lesson-section">
-            <div class="lesson-group">
-                <!-- style="position:absolute" -->
-                <!-- 動画 -->
-                <div class="lesson-item">
-                    <div class="left"> 
-                        <video class="video1" id="video1" width="640" height="480">
-                            <source src="" type="./video/video/mp4">
-                        </video>
-                        <img id="image1" src="./style/images/kendo1.jpg" alt=""  width="640" height="480">
-                                                    
-                        <canvas class="canvas1" id="canvas1" width="640" height="480"></canvas> 
-                    </div>
-                </div>
-
-                <!-- ウェブカメラ -->
-                <div class="lesson-item">
-                    <div class="right">
-                        <video id="video2" autoplay muted width="640" height="480"></video>
-                        <canvas id="canvas2" width="640" height="480"></canvas>
-                    </div>                     
-                </div>
-            </div>
-        </section>
-
-        <!-- 採点部 -->
-        <section class="score-section">
-            <!-- スコアボード -->
-            <div class="score-board">
-                <h1>スコア</h1>
-                <h2 id="score"></h2>
-                <h2 id="good"></h2>
-            </div>
-        </section>
+    </div>
 
 
-    <!-- ここまで編集 ↑ -->
-    </main>
-    
-    <!-- フッター -->
-    <footer>
-        <div class="footer-item">
-            <p>&copy; 2023 IKFM</p>
-        </div>
-    </footer>
+    <script>
+        posenet.load().then((net) => {
+            const video1 = document.getElementById('video1');
+            const video2 = document.getElementById('video2');
+            const poseData1 = [];
+            const poseData2 = [];
+            let isVideoPlaying1 = false;
+            let isVideoPlaying2 = false;
 
+            const canvas1 = document.getElementById('canvas1');
+            const ctx1 = canvas1.getContext('2d');
+            const canvas2 = document.getElementById('canvas2');
+            const ctx2 = canvas2.getContext('2d');
+
+            async function setupCamera() {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video2.srcObject = stream;
+                return new Promise((resolve) => {
+                    video2.onloadedmetadata = () => {
+                        isVideoPlaying2 = true;
+                        resolve();
+                    };
+                });
+            }
+
+            setupCamera()
+                .then(() => collectPoseData2());
+
+            video1.addEventListener('play', () => {
+                isVideoPlaying1 = true;
+                isVideoPlaying2 = true;
+                collectPoseData1();
+                collectPoseData2();
+            });
+
+
+            video1.addEventListener('pause', () => {
+                isVideoPlaying1 = false;
+                isVideoPlaying2 = false; // Canvas2への描画を停止
+            });
+
+
+            async function collectPoseData1() {
+                while (isVideoPlaying1) {
+                    const pose = await net.estimateSinglePose(video1, {
+                        imageScaleFactor: 1.0,
+                        flipHorizontal: false,
+                        outputStride: 32
+                    });
+                    poseData1.push(pose);
+                    drawPose(pose, ctx1, video1, fliper = false);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+            }
+            async function collectPoseData2() {
+                while (isVideoPlaying2) {
+                    const pose = await net.estimateSinglePose(video2, {
+                        imageScaleFactor: 1.0,
+                        flipHorizontal: true,
+                        outputStride: 32
+                    });
+                    fliper = true;
+                    poseData2.push(pose);
+                    drawPose(pose, ctx2, video2, fliper);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+            }
+
+            function drawPose(pose, ctx, video, fliper = false) {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                if (fliper) {
+                    ctx.save();
+                    ctx.scale(-1, 1);
+                    ctx.translate(-ctx.canvas.width, 0);
+                    ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.restore();
+                } else {
+                    ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
+                }
+                drawKeypoints(pose.keypoints, 0.1, ctx);
+                drawSkeleton(pose.keypoints, 0.1, ctx);
+            }
+
+
+            function toTuple({ y, x }) {
+                return [y, x];
+            }
+
+            function drawKeypoints(keypoints, minConfidence, ctx, color = 'aqua') {
+                for (let i = 0; i < keypoints.length; i++) {
+                    const keypoint = keypoints[i];
+                    if (keypoint.score < minConfidence) {
+                        continue;
+                    }
+                    const [y, x] = toTuple(keypoint.position);
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, 2 * Math.PI);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+            }
+
+            function drawSkeleton(keypoints, minConfidence, ctx, color = 'aqua') {
+                const adjacentKeyPoints = posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+
+                adjacentKeyPoints.forEach((keypoints) => {
+                    drawSegment(toTuple(keypoints[0].position), toTuple(keypoints[1].position), ctx, color);
+                });
+            }
+
+            function drawSegment([ay, ax], [by, bx], ctx, color) {
+                ctx.beginPath();
+                ctx.moveTo(ax, ay);
+                ctx.lineTo(bx, by);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
+            //download用コード
+            // downloadButton.addEventListener('click', () => {
+            //     isVideoPlaying1 = false;
+            //     isVideoPlaying2 = false;
+            //     const data1 = JSON.stringify(poseData1);
+            //     const data2 = JSON.stringify(poseData2);
+            //     const blob1 = new Blob([data1], { type: 'application/json' });
+            //     const blob2 = new Blob([data2], { type: 'application/json' });
+            //     const url1 = URL.createObjectURL(blob1);
+            //     const url2 = URL.createObjectURL(blob2);
+            //     const a1 = document.createElement('a');
+            //     const a2 = document.createElement('a');
+            //     a1.href = url1;
+            //     a2.href = url2;
+            //     a1.download = 'poseData1.json';
+            //     a2.download = 'poseData2.json';
+            //     a1.style.display = 'none';
+            //     a2.style.display = 'none'; // 修正: 'none' を追加
+            //     document.body.appendChild(a1);
+            //     document.body.appendChild(a2);
+            //     a1.click();
+            //     a2.click();
+            //     document.body.removeChild(a1);
+            //     document.body.removeChild(a2);
+            //     URL.revokeObjectURL(url1);
+            //     URL.revokeObjectURL(url2);
+            // });
+        });
+    </script>
 </body>
-</html>
 
+</html>
