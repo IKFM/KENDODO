@@ -196,24 +196,16 @@ button{
     text-align: right;
     position: relative;
 }
-video{
-    /* width: 640px;
-    height: 480px; */
-}
 canvas{
-    /* width: 640px;
-    height: 480px; */
     position: absolute;
     top: 0;
     left: 0;
     z-index: 200;
 }
-/* lesson-groupにFlexboxを適用 */
 .lesson-group {
     display: flex;
     justify-content: space-between; /* 左右に配置 */
 }
-
 
 /* スコアボード */
 .score-section{
@@ -240,7 +232,21 @@ footer {
 .footer-item{
     width: 100%;
     line-height: 50px;
-    /* position: absolute; */
+}
+
+/* ポップアップメッセージのスタイル */
+.popup-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1001;
+    text-align: center;
 }
 
 

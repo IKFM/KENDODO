@@ -16,6 +16,10 @@ const contentWidth2 = canvas2.width; // キャンバス2の幅。
 const contentHeight2 = canvas2.height; // キャンバス2の高さ。
 const ctx2 = canvas2.getContext('2d'); // キャンバス2のコンテキスト。描画操作に使用されます。
 
+const videoSelect = document.getElementById("videoSelect"); // セレクトボックスの要素を取得
+const startButton = document.getElementById("start-button"); // 再生ボタンの要素を取得
+const stopButton = document.getElementById("stop-button"); // 一時停止ボタンの要素を取得
+
 let correct_pose; // 正しいポーズの情報を格納する変数。ループ内で更新されます。
 let user_pose; // ユーザのポーズの情報を格納する変数。ループ内で更新されます。
 let error; // ポーズの角度誤差を格納する変数。ループ内で計算されます。
@@ -35,25 +39,73 @@ navigator.getUserMedia(
   err => console.error(err)
 )
 
-//ボタンをクリックするとスタート（ビデオが流れる）
-document.getElementById("start-button").onclick = function () {
-  target_score = document.getElementById("score");
-  target_score.innerHTML = "SCORE: " + String(score);
-  target = document.getElementById("good");
-  target.innerHTML = "　";
-  video1.play();
-};
+// セレクトボックスの選択状態を監視
+videoSelect.addEventListener("change", function () {
+  // 選択がない場合、ボタンを無効にする
+  if (videoSelect.value === "./style/images/kendo1.jpg") {
+    startButton.disabled = true;
+    stopButton.disabled = true;
+  } else {
+    startButton.disabled = false;
+    stopButton.disabled = false;
+  }
+});
 
-//ボタンをクリックするとストップ
-document.getElementById("stop-button").onclick = function () {
-  stopLoop();
-};
-
-// 追加
-function startVideo() {
-  video1.play();
+// 再生ボタンのクリックイベント
+startButton.addEventListener("click", function () {
+  if (videoSelect.value === "./style/images/kendo1.jpg") {
+    alert("お手本動画を選択してください");
+  } else {
+    // 動画が選択されている場合の処理
+    target_score = document.getElementById("score");
+    target_score.innerHTML = "SCORE: " + String(score);
+    target = document.getElementById("good");
+    target.innerHTML = "　";
+    video1.play();
 }
+});
 
+// 一時停止ボタンのクリックイベント
+stopButton.addEventListener("click", function () {
+  if (videoSelect.value === "./style/images/kendo1.jpg") {
+    alert("動画を選択してください");
+  } else {
+    // 動画が選択されている場合の処理
+    stopLoop();
+  }
+});
+
+// お手本動画の選択
+// セレクトボックスの選択時に呼び出される関数
+function changeVideoSource() {
+  const videoSelect = document.getElementById("videoSelect");
+  const video1 = document.getElementById("video1");
+  const image1 = document.getElementById("image1");
+
+  if (video1 && image1) {
+      const selectedSource = videoSelect.value;
+      if (selectedSource === "./style/images/kendo1.jpg") {
+          video1.style.display = "none";
+          image1.style.display = "block";
+      } else {
+          video1.style.display = "block";
+          image1.style.display = "none";
+          video1.src = selectedSource;
+          video1.load();
+      }
+  }
+}
+// セレクトボックスの選択変更イベントを監視し、関数を呼び出す
+// const videoSelect = document.getElementById("videoSelect");
+videoSelect.addEventListener("change", changeVideoSource);
+
+// ページ読み込み時に初期値を確認して画像または動画を表示
+if (videoSelect.value === "./style/images/kendo1.jpg") {
+  const video1 = document.getElementById("video1");
+  const image1 = document.getElementById("image1");
+  video1.style.display = "none";
+  image1.style.display = "block";
+}
 
 // ビデオが再生される際のイベントリスナー
 video1.addEventListener('play', () => {
@@ -215,40 +267,4 @@ function calcPositionAngle(position1, position2) {
 // 2点間の角度を計算
 function calcAngleDegrees(x1, y1, x2, y2) {
   return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-}
-
-
-// main.html
-// お手本動画の選択
-// セレクトボックスの選択時に呼び出される関数
-function changeVideoSource() {
-  const videoSelect = document.getElementById("videoSelect");
-  const video1 = document.getElementById("video1");
-  const image1 = document.getElementById("image1");
-
-  if (video1 && image1) {
-      const selectedSource = videoSelect.value;
-      if (selectedSource === "./style/images/kendo1.jpg") {
-          video1.style.display = "none";
-          image1.style.display = "block";
-      } else {
-          video1.style.display = "block";
-          image1.style.display = "none";
-          video1.src = selectedSource;
-          video1.load();
-      }
-  }
-}
-
-
-// セレクトボックスの選択変更イベントを監視し、関数を呼び出す
-const videoSelect = document.getElementById("videoSelect");
-videoSelect.addEventListener("change", changeVideoSource);
-
-// ページ読み込み時に初期値を確認して画像または動画を表示
-if (videoSelect.value === "./style/images/kendo1.jpg") {
-  const video1 = document.getElementById("video1");
-  const image1 = document.getElementById("image1");
-  video1.style.display = "none";
-  image1.style.display = "block";
 }
