@@ -46,13 +46,16 @@ videoSelect.addEventListener("change", function () {
     startButton.disabled = true;
     stopButton.disabled = true;
   } else {
+    video1.pause(); // 古いビデオを停止
+    video1.src = ""; // ビデオのソースをクリア
+    video1.load(); // ビデオをリロード
     startButton.disabled = false;
     stopButton.disabled = false;
   }
 });
 
 // 再生ボタンのクリックイベント
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", async function () {
   if (videoSelect.value === "./style/images/kendo1.jpg") {
     alert("お手本動画を選択してください");
   } else {
@@ -62,8 +65,14 @@ startButton.addEventListener("click", function () {
     target = document.getElementById("good");
     target.innerHTML = "　";
     video1.play();
-}
+
+    // 非同期関数内でPosenetのモデルを初期化
+    const net = await posenet.load();
+    // モデルを推定に使用した後に手動で解放
+    await net.dispose();
+  }
 });
+
 
 // 一時停止ボタンのクリックイベント
 stopButton.addEventListener("click", function () {
@@ -73,6 +82,11 @@ stopButton.addEventListener("click", function () {
     // 動画が選択されている場合の処理
     stopLoop();
   }
+});
+
+video1.addEventListener("error", function (e) {
+  console.error("ビデオ読み込みエラー", e);
+  // ここでエラーメッセージを表示または処理
 });
 
 // お手本動画の選択
@@ -96,7 +110,6 @@ function changeVideoSource() {
   }
 }
 // セレクトボックスの選択変更イベントを監視し、関数を呼び出す
-// const videoSelect = document.getElementById("videoSelect");
 videoSelect.addEventListener("change", changeVideoSource);
 
 // ページ読み込み時に初期値を確認して画像または動画を表示
