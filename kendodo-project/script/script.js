@@ -68,7 +68,7 @@ startButton.addEventListener("click", function () {
 // 一時停止ボタンのクリックイベント
 stopButton.addEventListener("click", function () {
   if (videoSelect.value === "./style/images/kendo1.jpg") {
-    alert("動画を選択してください");
+    alert("お手本動画を選択してください");
   } else {
     // 動画が選択されている場合の処理
     stopLoop();
