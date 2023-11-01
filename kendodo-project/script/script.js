@@ -16,15 +16,16 @@ const contentWidth2 = canvas2.width; // キャンバス2の幅。
 const contentHeight2 = canvas2.height; // キャンバス2の高さ。
 const ctx2 = canvas2.getContext('2d'); // キャンバス2のコンテキスト。描画操作に使用されます。
 
-const videoSelect = document.getElementById("videoSelect"); // セレクトボックスの要素を取得
-const startButton = document.getElementById("start-button"); // 再生ボタンの要素を取得
-const stopButton = document.getElementById("stop-button"); // 一時停止ボタンの要素を取得
+// const videoSelect = document.getElementById("videoSelect"); // セレクトボックスの要素を取得
+// const startButton = document.getElementById("start-button"); // 再生ボタンの要素を取得
+// const stopButton = document.getElementById("stop-button"); // 一時停止ボタンの要素を取得
 
 let correct_pose; // 正しいポーズの情報を格納する変数。ループ内で更新されます。
 let user_pose; // ユーザのポーズの情報を格納する変数。ループ内で更新されます。
 let error; // ポーズの角度誤差を格納する変数。ループ内で計算されます。
 let intervalId; // setIntervalメソッドのインターバルIDを格納する変数。ループの停止に使用されます。
 let score = 0; // スコアを格納する変数。正解したポーズの数をカウントします。初期値は0です。
+
 
 // ページが読み込まれたときに初期化
 window.onload = async function () {
@@ -39,39 +40,42 @@ navigator.getUserMedia(
   err => console.error(err)
 )
 
-// セレクトボックスの選択状態を監視
-videoSelect.addEventListener("change", function () {
-  // 選択がない場合、ボタンを無効にする
-  if (videoSelect.value === "./style/images/kendo1.jpg") {
-    startButton.disabled = true;
-    stopButton.disabled = true;
+
+
+
+// 動画URLを管理するオブジェクト
+const videoUrls = {
+  video1: "./video/video1.mp4",
+  video2: "./video/video2.mp4",
+  video3: "./video/video3.mp4"
+};
+
+// セレクトボックスとボタンの要素を取得
+const videoSelect = document.getElementById("videoSelect");
+const videoPlayer = document.getElementById("videoPlayer");
+const playButton = document.getElementById("playButton");
+const startButton = document.getElementById("start-button"); // 再生ボタンの要素を取得
+
+// セレクトボックスの選択が変更されたときに動作する関数
+videoSelect.addEventListener("change", function() {
+  // 選択された動画の値を取得
+  const selectedVideo = videoSelect.value;
+  
+  if (selectedVideo in videoUrls) {
+      // 動画のソースを設定して再生
+      videoPlayer.src = videoUrls[selectedVideo];
+      videoPlayer.load();
   } else {
-    video1.pause(); // 古いビデオを停止
-    video1.src = ""; // ビデオのソースをクリア
-    video1.load(); // ビデオをリロード
-    startButton.disabled = false;
-    stopButton.disabled = false;
+      // 選択肢が無効な場合は動画を停止
+      videoPlayer.src = "";
   }
 });
 
-// 再生ボタンのクリックイベント
-startButton.addEventListener("click", async function () {
-  if (videoSelect.value === "./style/images/kendo1.jpg") {
-    alert("お手本動画を選択してください");
-  } else {
-    // 動画が選択されている場合の処理
-    target_score = document.getElementById("score");
-    target_score.innerHTML = "SCORE: " + String(score);
-    target = document.getElementById("good");
-    target.innerHTML = "　";
-    video1.play();
-
-    // 非同期関数内でPosenetのモデルを初期化
-    const net = await posenet.load();
-    // モデルを推定に使用した後に手動で解放
-    await net.dispose();
-  }
+// 再生ボタンがクリックされたときに動画を再生
+startButton.addEventListener("click", function() {
+  videoPlayer.play();
 });
+
 
 
 // 一時停止ボタンのクリックイベント

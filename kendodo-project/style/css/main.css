@@ -23,9 +23,6 @@ html, body {
 
 body {
     background-color: var(--color3);  
-    /* display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%; */
     min-height: 100vh;
 }
 
@@ -69,9 +66,6 @@ main{
     width: 100%;
     min-height: 130vh;
     max-height: 1200px;
-    /* margin-top: 150px; */
-    /* position: relative; */
-    /* margin-bottom: 0; */
 }
 
 
