@@ -1,11 +1,13 @@
-<!-- test-- -->
-
 <!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- Title -->
+    <title>KENDODO-MAIN</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="main.css">
-    
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
     <script defer src="script.js"></script>
@@ -13,16 +15,16 @@
 
 <body>
     <!-- ヘッダー -->
-    <header>
-        <div class="header-section">
+    <!-- <header>
+        <div class="header-section"> -->
         <!-- ロゴ -->
-        <div class="logo">
+        <!-- <div class="logo">
             <a href=".">
                 <img src="./style/svg/logo.svg" alt="">
             </a>    
         </div>
         </div>
-    </header>
+    </header> -->
 
     <!-- メイン部 -->
     <main>
@@ -31,14 +33,29 @@
         <section class="select-section">
             <!-- お手本動画選択 -->
             <div class="select-item">
-
+                <select name="" id="" required>
+                    <option value="">お手本１</option>
+                    <option value="">お手本２</option>
+                </select>
 
             </div>
-            
+
             <!-- 動画再生・一時停止ボタン -->
             <div class="select-item">
-
-
+                <div class="button-group">
+                    <div class="button-item">
+                        <button class="start-button" id="start-button" unset>
+                            <p>お手本動画を再生</p>
+                            <img src="./style/svg/start.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="button-item">
+                        <button class="stop-button" id="stop-button" unset>
+                            <p>お手本動画を一時停止</p>
+                            <img src="./style/svg/stop.svg" alt="">
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </section>
