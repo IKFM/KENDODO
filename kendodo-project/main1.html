@@ -6,7 +6,7 @@
     <!-- Title -->
     <title>KENDODO-TOP</title>
     <!-- Css -->
-    <!-- <link rel="stylesheet" href="./style/css/main.css" /> -->
+    <link rel="stylesheet" href="./style/css/main.css" />
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
@@ -17,19 +17,19 @@
     <header>
         <div class="header-section">
         <!-- ロゴ -->
-        <!-- <div class="logo">
+        <div class="logo">
             <a href=".">
                 <img src="./style/svg/logo.svg" alt="">
             </a>    
         </div>
-        </div> -->
+        </div>
     </header>
 
     <!-- メイン部 -->
-    <main style="display: flex;">
-        <!-- お手本動画表示部 -->
-        <section class="left-section">
-            <div class="movie-group">
+    <main>
+        <!-- セレクト部 -->
+        <section class="select-section">
+            <div class="select-group">
                 <!-- お手本動画選択 -->
                 <div class="select-item">
                     <div class="select-movie1 select-movie2">
@@ -41,37 +41,38 @@
                         </select>
                     </div>
                 </div> 
-                <div>
-                    <video id="video1" width="360" height="450" autoplay controls>
-                        <!-- <source src="./images/vide0.mp4" type="video/mp4"> -->
-                        <source src="./video/vide0.mp4" type="video/mp4">
-                    </video>
-                    <canvas id="canvas1" width="360" height="450"></canvas>
-                </div>
-        </section>
-
-        <!-- 動画表示・レッスン部 -->
-        <section class="right-section">
-            <!-- お手本動画 再生・一時停止ボタン -->
-            <div class="select-item movie-button">
-                <div class="button-group"  style="display: flex;">
-                    <div class="button-item">
-                        <button class="start-button" id="start-button" unset>
-                            <p>お手本動画を再生</p>
-                            <img src="./style/svg/start.svg" alt="">
-                        </button>
-                    </div>
-                    <div class="button-item">
-                        <button class="stop-button" id="stop-button" unset>
-                            <p>お手本動画を一時停止</p>
-                            <img src="./style/svg/stop.svg" alt="">
-                        </button>
+                <!-- お手本動画 再生・一時停止ボタン -->
+                <div class="select-item movie-button">
+                    <div class="button-group">
+                        <div class="button-item">
+                            <button class="start-button" id="start-button" unset>
+                                <p>お手本動画を再生</p>
+                                <img src="./style/svg/start.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="button-item">
+                            <button class="stop-button" id="stop-button" unset>
+                                <p>お手本動画を一時停止</p>
+                                <img src="./style/svg/stop.svg" alt="">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
+        <!-- 動画表示・レッスン部 -->
+        <section class="lesson-section">
             <div class="lesson-group">
+
                 <div style="display: flex;">
+                    <div>
+                        <video id="video1" width="360" height="450" autoplay controls>
+                            <!-- <source src="./images/vide0.mp4" type="video/mp4"> -->
+                            <source src="./video/vide0.mp4" type="video/mp4">
+                        </video>
+                        <canvas id="canvas1" width="360" height="450"></canvas>
+                    </div>
                     <div>
                         <video id="video2" width="600" height="450" autoplay controls></video>
                         <canvas id="canvas2" width="600" height="450"></canvas>
