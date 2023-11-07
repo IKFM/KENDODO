@@ -8,9 +8,14 @@
 
 <body>
     <div style="display: flex;">
+        <nav>
+            <button id="start_button">再生</button>
+            <button id="stop_button">停止</button>
+        </nav>
+
         <div>
             <video id="video1" width="360" height="450" controls>
-                <source src="images/vide0.mp4" type="video/mp4">
+                <source src="/images/vide0.mp4" type="video/mp4">
             </video>
             <canvas id="canvas1" width="360" height="450"></canvas>
         </div>
@@ -48,18 +53,27 @@
             setupCamera()
                 .then(() => processPoseData());
 
-
-            video1.addEventListener('play', () => {
-                isVideoPlaying1 = true;
-                isVideoPlaying2 = true;
-                processPoseData();
-            });
-
-
             video1.addEventListener('pause', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
             });
+
+            
+            const startButton = document.getElementById('start_button');
+            startButton.addEventListener('click', () => {
+                isVideoPlaying1 = true;
+                isVideoPlaying2 = true;
+                video1.play();
+                processPoseData();
+            });
+
+            const stopButton = document.getElementById('stop_button');
+            stopButton.addEventListener('click', () => {
+                isVideoPlaying1 = false;
+                isVideoPlaying2 = false; // Canvas2への描画を停止
+                video1.pause();
+            });
+            
 
             async function processPoseData() {
                 while (isVideoPlaying1 && isVideoPlaying2) {
@@ -90,6 +104,13 @@
             //     while (isVideoPlaying1) {
             //         const pose = await net.estimateSinglePose(video1, {
             //             imageScaleFactor: 1.0,
+            //             flipHorizontal: false,
+            //             outputStride: 32
+            //         });
+            //         await new Promise(resolve => drawPose(pose, ctx1, video1, false, resolve));
+            //         await new Promise(resolve => setTimeout(resolve, 50));
+            //     }
+            // }
             //             flipHorizontal: false,
             //             outputStride: 32
             //         });
