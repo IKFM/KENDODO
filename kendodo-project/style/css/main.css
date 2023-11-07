@@ -59,7 +59,6 @@ ul{
     list-style: none;
 }
 
-
 main{
     width: 100%;
     min-height: 130vh;
@@ -72,14 +71,14 @@ main{
     margin: 150px auto 0 auto;
 }
 .lesson-section{
-    height: 100%;
     display: flex;
+    min-height: 600px;
     column-gap: normal;
 }
 
 /* 左部 お手本動画側 */
 .left-group{
-    margin: 0 auto;
+    margin: 0 auto 0 0;
 }
 /* セレクトボックス */
 .select-item select{
@@ -177,29 +176,37 @@ button{
 
 /* お手本動画・WEBカメラ表示 */
 .movie-display{
-    margin-top: 15px;
+    margin-top: 25px;
     position: relative;
 }
-video canvas{
+/* video要素のスタイル */
+video {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: auto; 
+    z-index: 1; /* canvasより下に配置する */
+}
+
+/* canvas要素のスタイル */
+canvas {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2; /* videoより上に配置する */
 }
-canvas{
-    z-index: 100;
-}
-
 
 /* スコアボード */
 .score-section{
     width: 100%;
+    min-height: 50px;
 }
 .score-board{
     width: 1450px;
     margin: 0 auto;
     color: var(--color1);
 }
-
 
 /* フッター */
 footer {
@@ -212,17 +219,8 @@ footer {
     top: auto;
     position: absolute;
     margin-bottom: 0;
+    z-index: 5;
 }
 .footer-item{
     width: 100%;
-    line-height: 50px;
-}
-
-
-
-
-
-
-
-
-
+    line-height: 50px;}
