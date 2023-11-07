@@ -6,7 +6,7 @@
     <!-- Title -->
     <title>KENDODO-TOP</title>
     <!-- Css -->
-    <!-- <link rel="stylesheet" href="./style/css/main.css" /> -->
+    <link rel="stylesheet" href="./style/css/main.css" />
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
@@ -17,64 +17,71 @@
     <header>
         <div class="header-section">
         <!-- ロゴ -->
-        <!-- <div class="logo">
+        <div class="logo">
             <a href=".">
                 <img src="./style/svg/logo.svg" alt="">
             </a>    
         </div>
-        </div> -->
+        </div>
     </header>
 
     <!-- メイン部 -->
-    <main style="display: flex;">
-        <!-- お手本動画表示部 -->
-        <section class="left-section">
-            <div class="movie-group">
-                <!-- お手本動画選択 -->
-                <div class="select-item">
-                    <div class="select-movie1 select-movie2">
-                        <select id="videoSelect" required>
-                            <option value="0" hidden>お手本を選択</option>
-                            <option value="1">お手本動画1</option>
-                            <option value="2">お手本動画2</option>
-                            <option value="3">お手本動画3</option>
-                        </select>
-                    </div>
-                </div> 
-                <div>
-                    <video id="video1" width="360" height="450" autoplay controls>
-                        <!-- <source src="./images/vide0.mp4" type="video/mp4"> -->
-                        <source src="./video/vide0.mp4" type="video/mp4">
-                    </video>
-                    <canvas id="canvas1" width="360" height="450"></canvas>
-                </div>
-        </section>
-
-        <!-- 動画表示・レッスン部 -->
-        <section class="right-section">
-            <!-- お手本動画 再生・一時停止ボタン -->
-            <div class="select-item movie-button">
-                <div class="button-group"  style="display: flex;">
-                    <div class="button-item">
-                        <button class="start-button" id="start-button" unset>
-                            <p>お手本動画を再生</p>
-                            <img src="./style/svg/start.svg" alt="">
-                        </button>
-                    </div>
-                    <div class="button-item">
-                        <button class="stop-button" id="stop-button" unset>
-                            <p>お手本動画を一時停止</p>
-                            <img src="./style/svg/stop.svg" alt="">
-                        </button>
+    <main>
+        <section class="main-section">
+            <div class="lesson-section">
+                <!-- 左部 お手本動画側 -->
+                <div class="left-group">
+                    <!-- セレクトボックス -->
+                    <div class="left-item">
+                        <div class="select-movie1 select-movie2">
+                            <select id="videoSelect" required>
+                                <option value="0" hidden>お手本を選択</option>
+                                <option value="1">お手本動画1</option>
+                                <option value="2">お手本動画2</option>
+                                <option value="3">お手本動画3</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <!-- お手本動画表示 -->
+                    <div class="left-item">
+                        <div class="movie-display">
+                            <video id="video1" width="360" height="450" autoplay controls>
+                                <!-- <source src="./images/vide0.mp4" type="video/mp4"> -->
+                                <source src="./video/vide0.mp4" type="video/mp4">
+                            </video>
+                            <canvas id="canvas1" width="360" height="450"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+                <!-- 右部 WEBカメラ側 -->
+                <div class="right-group">
+                    <!-- 動画再生・一時停止ボタン -->
+                    <div class="right-item">
+                        <div class="button-group">
+                            <!-- 再生ボタン -->
+                            <div class="button-item">
+                                <button class="start_button" id="start_button" unset>
+                                    <p>お手本動画を再生</p>
+                                    <img src="./style/svg/start.svg" alt="">
+                                </button>
+                            </div>
+                            <!-- 一時停止ボタン -->
+                            <div class="button-item">
+                                <button class="stop_button" id="stop_button" unset>
+                                    <p>お手本動画を一時停止</p>
+                                    <img src="./style/svg/stop.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="lesson-group">
-                <div style="display: flex;">
-                    <div>
-                        <video id="video2" width="600" height="450" autoplay controls></video>
-                        <canvas id="canvas2" width="600" height="450"></canvas>
+                    <!-- WEBカメラ表示 -->
+                    <div class="right-item">
+                        <div class="movie-display">
+                            <video id="video2" width="600" height="450" autoplay controls></video>
+                            <canvas id="canvas2" width="600" height="450"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,8 +104,6 @@
             <p>&copy; 2023 IKFM</p>
         </div>
     </footer>
-
-
 
     <script>
         posenet.load().then((net) => {
@@ -126,18 +131,27 @@
             setupCamera()
                 .then(() => processPoseData());
 
-
-            video1.addEventListener('play', () => {
-                isVideoPlaying1 = true;
-                isVideoPlaying2 = true;
-                processPoseData();
-            });
-
-
             video1.addEventListener('pause', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
             });
+
+            
+            const startButton = document.getElementById('start_button');
+            startButton.addEventListener('click', () => {
+                isVideoPlaying1 = true;
+                isVideoPlaying2 = true;
+                video1.play();
+                processPoseData();
+            });
+
+            const stopButton = document.getElementById('stop_button');
+            stopButton.addEventListener('click', () => {
+                isVideoPlaying1 = false;
+                isVideoPlaying2 = false; // Canvas2への描画を停止
+                video1.pause();
+            });
+            
 
             async function processPoseData() {
                 while (isVideoPlaying1 && isVideoPlaying2) {
@@ -168,6 +182,13 @@
             //     while (isVideoPlaying1) {
             //         const pose = await net.estimateSinglePose(video1, {
             //             imageScaleFactor: 1.0,
+            //             flipHorizontal: false,
+            //             outputStride: 32
+            //         });
+            //         await new Promise(resolve => drawPose(pose, ctx1, video1, false, resolve));
+            //         await new Promise(resolve => setTimeout(resolve, 50));
+            //     }
+            // }
             //             flipHorizontal: false,
             //             outputStride: 32
             //         });

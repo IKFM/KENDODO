@@ -6,7 +6,7 @@
     <!-- Title -->
     <title>KENDODO-TOP</title>
     <!-- Css -->
-    <link rel="stylesheet" href="./style/css/main.css" />
+    <link rel="stylesheet" href="./style/css/main1.css" />
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
@@ -45,13 +45,13 @@
                 <div class="select-item movie-button">
                     <div class="button-group">
                         <div class="button-item">
-                            <button class="start-button" id="start-button" unset>
+                            <button class="start_button" id="start_button" unset>
                                 <p>お手本動画を再生</p>
                                 <img src="./style/svg/start.svg" alt="">
                             </button>
                         </div>
                         <div class="button-item">
-                            <button class="stop-button" id="stop-button" unset>
+                            <button class="stop_button" id="stop_button" unset>
                                 <p>お手本動画を一時停止</p>
                                 <img src="./style/svg/stop.svg" alt="">
                             </button>
@@ -127,18 +127,27 @@
             setupCamera()
                 .then(() => processPoseData());
 
-
-            video1.addEventListener('play', () => {
-                isVideoPlaying1 = true;
-                isVideoPlaying2 = true;
-                processPoseData();
-            });
-
-
             video1.addEventListener('pause', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
             });
+
+            
+            const startButton = document.getElementById('start_button');
+            startButton.addEventListener('click', () => {
+                isVideoPlaying1 = true;
+                isVideoPlaying2 = true;
+                video1.play();
+                processPoseData();
+            });
+
+            const stopButton = document.getElementById('stop_button');
+            stopButton.addEventListener('click', () => {
+                isVideoPlaying1 = false;
+                isVideoPlaying2 = false; // Canvas2への描画を停止
+                video1.pause();
+            });
+            
 
             async function processPoseData() {
                 while (isVideoPlaying1 && isVideoPlaying2) {
@@ -169,6 +178,13 @@
             //     while (isVideoPlaying1) {
             //         const pose = await net.estimateSinglePose(video1, {
             //             imageScaleFactor: 1.0,
+            //             flipHorizontal: false,
+            //             outputStride: 32
+            //         });
+            //         await new Promise(resolve => drawPose(pose, ctx1, video1, false, resolve));
+            //         await new Promise(resolve => setTimeout(resolve, 50));
+            //     }
+            // }
             //             flipHorizontal: false,
             //             outputStride: 32
             //         });
