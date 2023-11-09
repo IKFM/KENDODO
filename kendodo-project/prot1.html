@@ -20,13 +20,13 @@
             <canvas id="canvas1" width="360" height="450"></canvas>
         </div>
         <div>
-            <video id="video2" width="600" height="450" autoplay ></video>
+            <video id="video2" width="600" height="450" autoplay></video>
             <canvas id="canvas2" width="600" height="450"></canvas>
         </div>
     </div>
 
     <style>
-        #video2{
+        #video2 {
             transform: scaleX(-1);
         }
     </style>
@@ -58,26 +58,42 @@
 
             setupCamera();
 
+
+            //動画一時停止時の処理
             video1.addEventListener('pause', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
             });
 
-
-            const startButton = document.getElementById('start_button');
-            startButton.addEventListener('click', () => {
-                isVideoPlaying1 = true;
-                isVideoPlaying2 = true;
-                video1.play();
-                processPoseData();
+            // 動画再生終了時の処理
+            video1.addEventListener('ended', () => {
+                isProcessing = false;
             });
 
+
+            //スタートボタンの処理
+            const startButton = document.getElementById('start_button');
+            let isProcessing = false;
+            startButton.addEventListener('click', () => {
+                if (!isProcessing) {
+                    isVideoPlaying1 = true;
+                    isVideoPlaying2 = true;
+                    isProcessing = true;
+                    video1.play();
+                    processPoseData();
+                }
+            });
+
+            //停止ボタンの処理
             const stopButton = document.getElementById('stop_button');
             stopButton.addEventListener('click', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
                 video1.pause();
+                isProcessing = false;
             });
+
+
 
 
             async function processPoseData() {
