@@ -142,19 +142,45 @@
                 });
             }
 
-            setupCamera()
-                .then(() => processPoseData());
+            setupCamera();
 
-            video1.addEventListener('play', () => {
-                isVideoPlaying1 = true;
-                isVideoPlaying2 = true;
-                processPoseData();
-            });
 
+            //動画一時停止時の処理
             video1.addEventListener('pause', () => {
                 isVideoPlaying1 = false;
                 isVideoPlaying2 = false; // Canvas2への描画を停止
             });
+
+            // 動画再生終了時の処理
+            video1.addEventListener('ended', () => {
+                isProcessing = false;
+            });
+
+
+            //スタートボタンの処理
+            const startButton = document.getElementById('start_button');
+            let isProcessing = false;
+            startButton.addEventListener('click', () => {
+                if (!isProcessing) {
+                    isVideoPlaying1 = true;
+                    isVideoPlaying2 = true;
+                    isProcessing = true;
+                    video1.play();
+                    processPoseData();
+                }
+            });
+
+            //停止ボタンの処理
+            const stopButton = document.getElementById('stop_button');
+            stopButton.addEventListener('click', () => {
+                isVideoPlaying1 = false;
+                isVideoPlaying2 = false; // Canvas2への描画を停止
+                video1.pause();
+                isProcessing = false;
+            });
+
+
+
 
             async function processPoseData() {
                 while (isVideoPlaying1 && isVideoPlaying2) {
@@ -179,31 +205,6 @@
                     await new Promise(resolve => setTimeout(resolve, 50));
                 }
             }
-
-
-            // async function collectPoseData1() {
-            //     while (isVideoPlaying1) {
-            //         const pose = await net.estimateSinglePose(video1, {
-            //             imageScaleFactor: 1.0,
-            //             flipHorizontal: false,
-            //             outputStride: 32
-            //         });
-
-            //         await new Promise(resolve => setTimeout(resolve, 50));
-            //     }
-            // }
-            // async function collectPoseData2() {
-            //     while (isVideoPlaying2) {
-            //         const pose = await net.estimateSinglePose(video2, {
-            //             imageScaleFactor: 1.0,
-            //             flipHorizontal: true,
-            //             outputStride: 32
-            //         });
-            //         fliper = true;
-            //         drawPose(pose, ctx2, video2, fliper);
-            //         await new Promise(resolve => setTimeout(resolve, 50));
-            //     }
-            // }
 
             function drawPose(pose, ctx, video, fliper = false, resolve) {
                 ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
