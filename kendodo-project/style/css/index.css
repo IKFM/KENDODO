@@ -42,7 +42,6 @@ header {
     height: 100px;
     line-height: 100px;
 }
-
 /* ヘッダー内メインリンク */
 .header-main-link{
     margin: 0 0 0 auto;
@@ -51,7 +50,6 @@ ul{
     display: flex;
     list-style: none;
 }
-
 
 /* メイン部 */
 main{
@@ -101,7 +99,6 @@ main{
     animation: fade-in2 0.8s ease-in-out; /* アニメーションの持続時間を1.0秒に変更 */
     z-index: -1; 
 }
-
 /* フェードインのキーフレームアニメーション */
 @keyframes fade-in {
     0% {
@@ -124,11 +121,10 @@ main{
     }
 }
 
-
 /* メイン部 */
 .main-area{
     width: 990px; 
-    height: 920px;
+    height: 830px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -151,56 +147,62 @@ main{
     flex-direction: column;
     align-items: center;
 }
-
-
-/* メイン部・概要欄のテキスト共通 */
-.title{
-    font-size: 64px;
-    font-weight: 700;
-    line-height: normal;
+.catchphrase-section .t-1{
+    border-bottom: solid 2px var(--color1);
 }
-.about{
-    width: 100%;
-    height: 60px;
-    word-break: normal;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
-}
-
 
 /* 概要欄 */
 .overview-section{
     width: 100%;
     height: 600px;
-    /* margin-top: 140px; */
     color: var(--color3);
     background-color: rgba(204,204,204,0.9);
+    margin-top: 200px;
 }
 .overview-group{
     width: 990px;
     height: 100%;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
 }
 .overview-item{
-    /* display: inline-block; */
-    /* vertical-align: middle; */
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.overview-img{
+.overview-img img{
     width: 508px;
     height: 359px;
 }
 .overview-text{
     width: 455px;
+    height: 359px;
     margin-left: 36px;
-    object-fit: cover;
 }
-.overview-text .about{
-    margin-top: 20px;
+.overview-section .t-1{
+    border-bottom: solid 2px var(--color3);
 }
 
+/* メイン部・概要欄のテキスト共通 */
+.t-1{
+    font-size: 64px;
+    font-weight: 700;
+    line-height: normal;
+}
+.t-2{
+    margin-top: 12px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: normal;
+}
+.t-3{
+    width: 100%;
+    height: auto;
+    word-break: normal;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+}
 
 /* 使い方 */
 .instructions-section{
@@ -209,12 +211,10 @@ main{
     margin-top: 100px;
     color: var(--color1);
 }
-
 .instructions-group{
     width: 990px;
     margin: 0 auto;
 }
-
 
 /* フッター */
 footer {
@@ -223,14 +223,12 @@ footer {
     text-align: center;
     color: var(--color3);
     background-color: var(--color2);
-
 }
 .footer-item{
     width: 100%;
     line-height: 50px;
     /* position: absolute; */
 }
-
 
 /* メインページリンク */
 .to-main{
