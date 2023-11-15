@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="./style/css/index.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@400;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
-    <!-- Script -->
-    <script defer src="./script/index.js"></script>
 </head>
 
 <body>
@@ -125,5 +123,22 @@
         </div>
     </footer>
 
+    <!-- Script -->
+    <script>
+        // ページ読み込み時にアニメーションを開始
+        window.addEventListener('load', function() {
+            const background = document.querySelector('.background-image');
+            const background2 = document.querySelector('.background-image2');
+            background.style.animationPlayState = 'running';
+            background2.style.animationPlayState = 'running';
+        });
+
+        // ページを更新するたびにアニメーションを再開
+        window.addEventListener('beforeunload', function() {
+            const background = document.queryselector('.background-image');
+            background.style.animationPlayState = 'running';
+            background2.style.animationPlayState = 'running';
+        });
+    </script>
 </body>
 </html>
