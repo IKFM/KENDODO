@@ -149,6 +149,7 @@ main{
 }
 .catchphrase-section .t-1{
     border-bottom: solid 2px var(--color1);
+    box-shadow: 0px 8px 5px -4px rgba(204, 204, 204, 0.4); /* 影 */    
 }
 .catchphrase-section .t-2{
     margin-bottom: 20px;
@@ -184,8 +185,8 @@ main{
 }
 .overview-section .t-1{
     border-bottom: solid 2px var(--color3);
+    box-shadow: 0px 8px 5px -4px rgba(51, 51, 102, 0.3); /* 影 */    
 }
-
 /* 使い方 */
 .instructions-section{
     width: 100%;
@@ -199,10 +200,13 @@ main{
     margin: 0 auto;
 }
 .usage-title{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
-.usage-text{
-
+.usage-title .t-2{
+    padding: 10px;
+    text-align: center;
+    border-bottom: solid 2px var(--color1);
+    box-shadow: 0px 8px 5px -4px rgba(204, 204, 204, 0.4); /* 影 */    
 }
 
 /* テキスト共通 */
@@ -238,7 +242,6 @@ footer {
 .footer-item{
     width: 100%;
     line-height: 50px;
-    /* position: absolute; */
 }
 
 /* メインページリンク */
