@@ -5,7 +5,6 @@
     font-family: Noto Sans JP;
     font-style: normal;
 }
-
 :root{
     /* Colors */
     --color: #FF3333;
@@ -13,7 +12,6 @@
     --color2: #CCCCCC;
     --color3: #333366;
 }
-
 body {
     background-color: var(--color3);  
 }
@@ -78,6 +76,7 @@ main{
     height: 100%;
     position: absolute;
     top: 0px;
+    padding-left: 20px;
     margin-top: 200px;
     margin-right: 0;
     background-image: url('../svg/silhouette_gradation.svg'); /* 背景画像のパスを指定 */
@@ -90,10 +89,9 @@ main{
     height: 100%;
     position: absolute;
     top: 30px;
-    padding-left: 20px;
+    padding-left: 40px;
     margin-top: 200px;
     margin-right: 0;
-
     background-image: url('../svg/silhouette_line.svg'); /* 背景画像のパスを指定 */
     background-size: 100% 100%; /* ウィンドウサイズに合わせて伸縮する */
     animation: fade-in2 0.8s ease-in-out; /* アニメーションの持続時間を1.0秒に変更 */
