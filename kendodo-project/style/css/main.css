@@ -145,6 +145,7 @@ main {
 
 /* 右部 Webカメラ側 */
 .right-group{
+    width: 650px;
     margin: 0 auto;
 }
 .right-item{
