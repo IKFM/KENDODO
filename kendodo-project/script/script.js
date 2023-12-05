@@ -10,17 +10,27 @@ posenet.load().then((net) => {
     const ctx2 = canvas2.getContext('2d');
   
     async function setupCamera() {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video2.srcObject = stream;
-        return new Promise((resolve) => {
-            video2.onloadedmetadata = () => {
-                isVideoPlaying2 = true;
-                resolve();
-            };
-        });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video2.srcObject = stream;
+    
+      return new Promise((resolve) => {
+        video2.onloadedmetadata = () => {
+          isVideoPlaying2 = true;
+          resolve();
+        };
+      });
     }
-  
-    setupCamera();
+    
+    function flipVideo() {
+      const video = document.getElementById('video2');
+      video.style.transform = 'scaleX(-1)';
+    }
+    
+    // カメラのセットアップ
+    setupCamera().then(() => {
+      // カメラがセットアップされた後に映像を反転させる
+      flipVideo();
+    });
   
   
     //動画一時停止時の処理
@@ -70,7 +80,7 @@ posenet.load().then((net) => {
   
             const pose2 = await net.estimateSinglePose(video2, {
                 imageScaleFactor: 1.0,
-                flipHorizontal: false,
+                flipHorizontal: true,
                 outputStride: 32
             });
             await Promise.all([
