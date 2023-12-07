@@ -212,14 +212,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         changeVideoSource(this.value);
     });
 
-    startButton.addEventListener('click', function() {
-        if (videoSelect.value === '0') {
-            alert('お手本動画を選択してください。');
-        } else {
-            // お手本動画の再生処理（既存のコードを使用）
-        }
-    });
-
     stopButton.addEventListener('click', function() {
         if (videoSelect.value === '0') {
             alert('お手本動画を選択してください。');
