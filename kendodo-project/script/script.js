@@ -49,13 +49,14 @@ video1.addEventListener('ended', () => {
 const startButton = document.getElementById('start_button');
 let isProcessing = false;
 startButton.addEventListener('click', () => {
-    if (!isProcessing) {
-        isVideoPlaying1 = true;
-        isVideoPlaying2 = true;
-        isProcessing = true;
-        video1.play();
-        processPoseData();
+    if (videoSelect.value === '0') {
+        alert('お手本動画を選択してください。');
+        return; // ここで処理を終了
     }
+    isVideoPlaying1 = true;
+    isVideoPlaying2 = true;
+    video1.play();
+    processPoseData();
 });
 
 //停止ボタンの処理
@@ -67,10 +68,9 @@ stopButton.addEventListener('click', () => {
     isProcessing = false;
 });
 
-
-
-
 async function processPoseData() {
+    if (!isVideoPlaying1 || !isVideoPlaying2) return; // ここで条件をチェック
+
     while (isVideoPlaying1 && isVideoPlaying2) {
         const pose1 = await net.estimateSinglePose(video1, {
             imageScaleFactor: 1.0,
