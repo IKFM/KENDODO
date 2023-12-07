@@ -85,12 +85,12 @@ main {
 /* セレクトボックス */
 .select-item select{
     /* セレクトボックスの幅(動画サイズに合わせる) */
-    width: 360px;
+    width: 640px;
     text-align-last: center;
 }
 .select-movie1 {
     overflow: hidden;
-    width: 360px;
+    width: 640px;
     text-align: center;
 }
 .select-movie1 select {
