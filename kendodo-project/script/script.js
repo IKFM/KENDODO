@@ -62,10 +62,15 @@ startButton.addEventListener('click', () => {
 //停止ボタンの処理
 const stopButton = document.getElementById('stop_button');
 stopButton.addEventListener('click', () => {
-    isVideoPlaying1 = false;
-    isVideoPlaying2 = false; // Canvas2への描画を停止
-    video1.pause();
-    isProcessing = false;
+    if (videoSelect.value === '0') {
+        alert('お手本動画を選択してください。');
+    } else {
+        // お手本動画の停止処理
+        isVideoPlaying1 = false;
+        isVideoPlaying2 = false; // Canvas2への描画を停止
+        video1.pause();
+        isProcessing = false;
+    }
 });
 
 async function processPoseData() {
@@ -203,21 +208,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const videoSelect = document.getElementById('videoSelect');
     const video1 = document.getElementById('video1');
     const img0 = document.getElementById('img0')
-    const startButton = document.getElementById('start_button');
-    const stopButton = document.getElementById('stop_button');
-
 
     // セレクトボックスの変更を検出するイベントリスナーを追加
     videoSelect.addEventListener('change', function() {
         changeVideoSource(this.value);
-    });
-
-    stopButton.addEventListener('click', function() {
-        if (videoSelect.value === '0') {
-            alert('お手本動画を選択してください。');
-        } else {
-            // お手本動画の停止処理（既存のコードを使用）
-        }
     });
 
     function changeVideoSource(value) {
