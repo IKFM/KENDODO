@@ -49,7 +49,7 @@ video1.addEventListener('ended', () => {
 const startButton = document.getElementById('start_button');
 let isProcessing = false;
 startButton.addEventListener('click', () => {
-    if (videoSelect.value === '0') {
+    if (videoSelect.value === '0') { // お手本動画選択処理(仮)
         alert('お手本動画を選択してください。');
         return; // ここで処理を終了
     }
@@ -62,7 +62,7 @@ startButton.addEventListener('click', () => {
 //停止ボタンの処理
 const stopButton = document.getElementById('stop_button');
 stopButton.addEventListener('click', () => {
-    if (videoSelect.value === '0') {
+    if (videoSelect.value === '0') { // お手本動画選択処理(仮)
         alert('お手本動画を選択してください。');
     } else {
         // お手本動画の停止処理
@@ -203,6 +203,7 @@ function calcAngleDegrees(x1, y1, x2, y2) {
 
 });
 
+// お手本動画選択処理(仮)
 document.addEventListener('DOMContentLoaded', async () => {
     // セレクトボックスとビデオ要素の取得
     const videoSelect = document.getElementById('videoSelect');
@@ -249,17 +250,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             resolve();
         };
     });
-
-    // カメラのセットアップ
-    await setupCamera();
-
-    // ここにPoseNetの処理を開始するコードを追加
 });
-
-async function setupCamera() {
-    // カメラ設定のコード（既存のコードを使用）
-}
-
-async function initPoseNet() {
-    // PoseNetの処理（既存のコードを使用）
-}
