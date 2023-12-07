@@ -48,9 +48,10 @@
                     <div class="left-item">
                         <div class="movie-display">
                             <video id="video1" width="600" height="450">
-                                <source src="./video/video5.mp4" type="video/mp4">
+                                <source src="" type="video/mp4">
                             </video>
                             <canvas id="canvas1" width="600" height="450"></canvas>
+                            <img id="img0" src="./style/images/kendo1.jpg" width="600" height="450">                            
                         </div>
                     </div>
                 </div>
@@ -126,36 +127,62 @@
             // セレクトボックスとビデオ要素の取得
             const videoSelect = document.getElementById('videoSelect');
             const video1 = document.getElementById('video1');
+            const img0 = document.getElementById('img0')
+            const startButton = document.getElementById('start_button');
+            const stopButton = document.getElementById('stop_button');
+
     
             // セレクトボックスの変更を検出するイベントリスナーを追加
             videoSelect.addEventListener('change', function() {
                 changeVideoSource(this.value);
             });
-    
-            // 動画ソースを変更する関数
+
+            startButton.addEventListener('click', function() {
+                if (videoSelect.value === '0') {
+                    alert('お手本動画を選択してください。');
+                } else {
+                    // お手本動画の再生処理（既存のコードを使用）
+                }
+            });
+
+            stopButton.addEventListener('click', function() {
+                if (videoSelect.value === '0') {
+                    alert('お手本動画を選択してください。');
+                } else {
+                    // お手本動画の停止処理（既存のコードを使用）
+                }
+            });
+
             function changeVideoSource(value) {
-                switch (value) {
-                    case '1':
-                        video1.src = './video/video1.mp4';
-                        break;
-                    case '2':
-                        video1.src = './video/video2.mp4';
-                        break;
-                    case '3':
-                        video1.src = './video/video3.mp4';
-                        break;
-                    case '4':
-                        video1.src = './video/video4.mp4';
-                        break;
-                    case '5':
-                        video1.src = './video/video5.mp4';
-                        break;
-                    default:
-                        video1.src = ''; // お手本動画が選択されていない場合
+                if (value === '0') {
+                    video1.style.display = 'none';
+                    img0.style.display = 'block'; // 画像を表示
+                } else {
+                    video1.style.display = 'block';
+                    img0.style.display = 'none'; // 画像を非表示
+                    switch (value) {
+                        case '1':
+                            video1.src = './video/video1.mp4';
+                            break;
+                            case '1':
+                            video1.src = './video/video1.mp4';
+                            break;
+                        case '2':
+                            video1.src = './video/video2.mp4';
+                            break;
+                        case '3':
+                            video1.src = './video/video3.mp4';
+                            break;
+                        case '4':
+                            video1.src = './video/video4.mp4';
+                            break;
+                        case '5':
+                            video1.src = './video/video5.mp4';
+                            break;
+                    }
                 }
             }
-    
-            // ビデオのロードが完了したかを確認
+            // ビデオのロードが完了したことを確認
             await new Promise((resolve) => {
                 video1.onloadeddata = () => {
                     resolve();
@@ -168,10 +195,13 @@
             // ここにPoseNetの処理を開始するコードを追加
         });
     
-        // カメラのセットアップ関数
         async function setupCamera() {
-            // カメラ設定のコード
+            // カメラ設定のコード（既存のコードを使用）
         }
+
+        async function initPoseNet() {
+            // PoseNetの処理（既存のコードを使用）
+        }    
     </script>
     
     <script src="./script/script.js"></script>
