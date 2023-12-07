@@ -39,16 +39,18 @@
                                 <option value="1">お手本動画1</option>
                                 <option value="2">お手本動画2</option>
                                 <option value="3">お手本動画3</option>
+                                <option value="4">お手本動画4</option>
+                                <option value="5">お手本動画5</option>                                
                             </select>
                         </div>
                     </div> 
                     <!-- お手本動画表示 -->
                     <div class="left-item">
                         <div class="movie-display">
-                            <video id="video1" width="360" height="450">
+                            <video id="video1" width="600" height="450">
                                 <source src="./video/video5.mp4" type="video/mp4">
                             </video>
-                            <canvas id="canvas1" width="360" height="450"></canvas>
+                            <canvas id="canvas1" width="600" height="450"></canvas>
                         </div>
                     </div>
                 </div>
@@ -119,6 +121,59 @@
     </footer>
 
     <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // セレクトボックスとビデオ要素の取得
+            const videoSelect = document.getElementById('videoSelect');
+            const video1 = document.getElementById('video1');
+    
+            // セレクトボックスの変更を検出するイベントリスナーを追加
+            videoSelect.addEventListener('change', function() {
+                changeVideoSource(this.value);
+            });
+    
+            // 動画ソースを変更する関数
+            function changeVideoSource(value) {
+                switch (value) {
+                    case '1':
+                        video1.src = './video/video1.mp4';
+                        break;
+                    case '2':
+                        video1.src = './video/video2.mp4';
+                        break;
+                    case '3':
+                        video1.src = './video/video3.mp4';
+                        break;
+                    case '4':
+                        video1.src = './video/video4.mp4';
+                        break;
+                    case '5':
+                        video1.src = './video/video5.mp4';
+                        break;
+                    default:
+                        video1.src = ''; // お手本動画が選択されていない場合
+                }
+            }
+    
+            // ビデオのロードが完了したかを確認
+            await new Promise((resolve) => {
+                video1.onloadeddata = () => {
+                    resolve();
+                };
+            });
+    
+            // カメラのセットアップ
+            await setupCamera();
+    
+            // ここにPoseNetの処理を開始するコードを追加
+        });
+    
+        // カメラのセットアップ関数
+        async function setupCamera() {
+            // カメラ設定のコード
+        }
+    </script>
+    
     <script src="./script/script.js"></script>
 
 </body>

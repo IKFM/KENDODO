@@ -86,12 +86,12 @@ main {
 /* セレクトボックス */
 .select-item select{
     /* セレクトボックスの幅(動画サイズに合わせる) */
-    width: 360px;
+    width: 600px;
     text-align-last: center;
 }
 .select-movie1 {
     overflow: hidden;
-    width: 360px;
+    width: 600px;
     text-align: center;
 }
 .select-movie1 select {
@@ -194,7 +194,7 @@ video {
     top: 0;
     left: 0; 
     width: 100%;
-    height: auto; 
+    height: 450px;
     z-index: 1; /* canvasより下に配置する */
 }
 /* canvas要素のスタイル */

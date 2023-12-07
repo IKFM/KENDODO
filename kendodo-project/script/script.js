@@ -84,9 +84,10 @@ posenet.load().then((net) => {
                 outputStride: 32
             });
             await Promise.all([
-                new Promise(resolve => drawPose(pose1, ctx1, video1, false, resolve)),
-                new Promise(resolve => drawPose(pose2, ctx2, video2, true, resolve))
+                new Promise(resolve => drawPose(pose1, ctx1, video1, false, resolve,'fuchsia')),
+                new Promise(resolve => drawPose(pose2, ctx2, video2, true, resolve,'yellow'))
             ]);
+            console.log(pose2)
             const error = calcAngleError(pose1, pose2);
             console.log(`Angle Error: ${error}`);
   
@@ -94,7 +95,7 @@ posenet.load().then((net) => {
         }
     }
   
-    function drawPose(pose, ctx, video, fliper = false, resolve) {
+    function drawPose(pose, ctx, video, fliper = false, resolve,color) {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         if (fliper) {
             ctx.save();
@@ -105,8 +106,8 @@ posenet.load().then((net) => {
         } else {
             ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
         }
-        drawKeypoints(pose.keypoints, 0.1, ctx);
-        drawSkeleton(pose.keypoints, 0.1, ctx);
+        drawKeypoints(pose.keypoints, 0.1, ctx, color);
+        drawSkeleton(pose.keypoints, 0.1, ctx, color);
   
         if (resolve) {
             resolve(); // Promiseを解決して同期を完了
@@ -118,7 +119,7 @@ posenet.load().then((net) => {
         return [y, x];
     }
   
-    function drawKeypoints(keypoints, minConfidence, ctx, color = 'aqua') {
+    function drawKeypoints(keypoints, minConfidence, ctx, color) {
         for (let i = 0; i < keypoints.length; i++) {
             const keypoint = keypoints[i];
             if (keypoint.score < minConfidence) {
@@ -144,7 +145,7 @@ posenet.load().then((net) => {
         ctx.beginPath();
         ctx.moveTo(ax, ay);
         ctx.lineTo(bx, by);
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 4;
         ctx.strokeStyle = color;
         ctx.stroke();
     }
