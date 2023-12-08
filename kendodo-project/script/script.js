@@ -11,6 +11,8 @@ let score = 0;
 let isProcessing = false;
 
 posenet.load().then((net) => {
+
+
     async function setupCamera() {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video2.srcObject = stream;
@@ -54,7 +56,11 @@ posenet.load().then((net) => {
             return;
         }
         if (!isProcessing) {
-            startProcessing();
+            isVideoPlaying1 = true;
+            isVideoPlaying2 = true;
+            isProcessing = true;
+            video1.play();
+            processPoseData();
         }
     });
 
@@ -72,16 +78,8 @@ posenet.load().then((net) => {
         }
     });
 
-    function startProcessing() {
-        isVideoPlaying1 = true;
-        isVideoPlaying2 = true;
-        isProcessing = true;
-        video1.play();
-        processPoseData();
-    }
-    
-
     async function processPoseData() {
+
         if (!isVideoPlaying1 || !isVideoPlaying2) return; // ここで条件をチェック
 
         while (isVideoPlaying1 && isVideoPlaying2) {
@@ -106,6 +104,11 @@ posenet.load().then((net) => {
             console.log(pose2)
             const error = calcAngleError(pose1, pose2);
             console.log(`Angle Error: ${error}`);
+            if (!isProcessing) {
+                clearCanvas(ctx1)
+                clearCanvas(ctx2)
+                break
+            }
 
             await new Promise(resolve => setTimeout(resolve, 50));
         }
@@ -225,37 +228,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     const videoSelect = document.getElementById('videoSelect');
     const img0 = document.getElementById('img0')
 
-    // 動画選択処理
-    function changeVideoSource(value) {
-        if (value === '0') {
-            video1.style.display = 'none';
-            img0.style.display = 'block';
-        } else {
-            video1.style.display = 'block';
-            img0.style.display = 'none';
-            video1.src = `./video/video${value}.mp4`;
-            video1.load();
-        }
-    }
-
-    // 動画選択イベントリスナー
+    // セレクトボックスの変更を検出するイベントリスナーを追加
     videoSelect.addEventListener('change', function () {
-        if (isProcessing) {
-            stopProcessing();
+        if (isProcessing = true) {
+            isVideoPlaying1 = false;
+            isVideoPlaying2 = false;
+            isProcessing = false;
+            clearCanvas(ctx1)
+            clearCanvas(ctx2)
         }
         changeVideoSource(this.value);
     });
 
-    function stopProcessing() {
-        isVideoPlaying1 = false;
-        isVideoPlaying2 = false;
-        isProcessing = false;
-        video1.pause();
-        clearCanvas(ctx1);
-        clearCanvas(ctx2);
+
+
+    function changeVideoSource(value) {
+        if (value === '0') {
+            video1.style.display = 'none';
+            img0.style.display = 'block'; // 画像を表示
+            return
+        }
+        video1.style.display = 'block';
+        img0.style.display = 'none'; // 画像を非表示
+        video1.src = `./video/video${value}.mp4`; // 選択された動画を表示
+        video1.load(); // 新しいソースでビデオを再読み込み
     }
 
-    
     // ビデオのロードが完了したことを確認
     await new Promise((resolve) => {
         video1.onloadeddata = () => {
