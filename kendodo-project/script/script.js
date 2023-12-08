@@ -52,11 +52,12 @@ startButton.addEventListener('click', function() {
     if (videoSelect.value === '0') {
         alert('お手本動画を選択してください。');
         return;
+    } else {
+        isVideoPlaying1 = true;
+        isVideoPlaying2 = true;
+        video1.play();
+        processPoseData();
     }
-    isVideoPlaying1 = true;
-    isVideoPlaying2 = true;
-    video1.play();
-    processPoseData();
 });
 
 //停止ボタンの処理
@@ -64,11 +65,12 @@ const stopButton = document.getElementById('stop_button');
 stopButton.addEventListener('click', () => {
     if (videoSelect.value === '0') { // お手本動画選択処理
         alert('お手本動画を選択してください。');
-    } 
-    isVideoPlaying1 = false;
-    isVideoPlaying2 = false; // Canvas2への描画を停止
-    video1.pause();
-    isProcessing = false;
+    } else {
+        isVideoPlaying1 = false;
+        isVideoPlaying2 = false; // Canvas2への描画を停止
+        video1.pause();
+        isProcessing = false;
+    }
 });
 
 async function processPoseData() {
