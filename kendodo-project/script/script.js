@@ -48,10 +48,10 @@ video1.addEventListener('ended', () => {
 //スタートボタンの処理
 const startButton = document.getElementById('start_button');
 let isProcessing = false;
-startButton.addEventListener('click', () => {
-    if (videoSelect.value === '0') { // お手本動画選択処理
+startButton.addEventListener('click', function() {
+    if (videoSelect.value === '0') {
         alert('お手本動画を選択してください。');
-        return; // ここで処理を終了
+        return;
     }
     isVideoPlaying1 = true;
     isVideoPlaying2 = true;
@@ -220,29 +220,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             video1.style.display = 'block';
             img0.style.display = 'none'; // 画像を非表示
-            switch (value) {
-                case '1':
-                    video1.src = './video/video1.mp4';
-                    break;
-                    case '1':
-                    video1.src = './video/video1.mp4';
-                    break;
-                case '2':
-                    video1.src = './video/video2.mp4';
-                    break;
-                case '3':
-                    video1.src = './video/video3.mp4';
-                    break;
-                case '4':
-                    video1.src = './video/video4.mp4';
-                    break;
-                case '5':
-                    video1.src = './video/video5.mp4';
-                    break;
-            }
+            video1.src = `./video/video${value}.mp4`; // 選択された動画を表示
+            video1.load(); // 新しいソースでビデオを再読み込み
         }
     }
-    // ビデオのロードが完了したことを確認
+    
+        // ビデオのロードが完了したことを確認
     await new Promise((resolve) => {
         video1.onloadeddata = () => {
             resolve();
