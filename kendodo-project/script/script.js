@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
     
-        // ビデオのロードが完了したことを確認
+    // ビデオのロードが完了したことを確認
     await new Promise((resolve) => {
         video1.onloadeddata = () => {
             resolve();
