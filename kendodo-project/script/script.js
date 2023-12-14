@@ -40,12 +40,13 @@ posenet.load().then((net) => {
     //動画一時停止時の処理
     video1.addEventListener('pause', () => {
         isVideoPlaying1 = false;
-        isVideoPlaying2 = false; // Canvas2への描画を停止
+        //isVideoPlaying2 = false; 
     });
 
     // 動画再生終了時の処理
     video1.addEventListener('ended', () => {
         isProcessing = false;
+        video1.currentTime = 0; // 動画の再生位置を一番最初に戻す
     });
 
     //スタートボタンの処理
@@ -55,13 +56,16 @@ posenet.load().then((net) => {
             alert('お手本動画を選択してください。');
             return;
         }
+        setTimeout(() => {
         if (!isProcessing) {
+            console.log('isProcessing_start')
             isVideoPlaying1 = true;
             isVideoPlaying2 = true;
             isProcessing = true;
-            video1.play();
             processPoseData();
-        }
+            video1.play();
+            console.log('start!')
+        }}, 2000);
     });
 
     //停止ボタンの処理
