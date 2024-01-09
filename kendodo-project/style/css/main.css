@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    /* outline: 2px solid rgb(50, 231, 255); */
+    outline: 2px solid rgb(50, 231, 255);
     font-family: Noto Sans JP;
     font-style: normal;
 }
@@ -41,7 +41,7 @@ header {
     z-index: 1000;
 }
 .header-section{
-    width: 1600px; 
+    width: 1720px; 
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -63,7 +63,7 @@ ul{
 
 /* メイン部 */
 .main-section{
-    width: 1600px;
+    width: 1720px;
     height: auto; 
     margin: 20px auto 0 auto;
 }
@@ -81,7 +81,7 @@ main {
 
 /* 左部 お手本動画側 */
 .left-group{
-    margin: 0 auto 0 0;
+    margin: 0;
 }
 /* セレクトボックス */
 .select-item select{
@@ -208,11 +208,12 @@ canvas {
 
 /* スコアボード */
 .score-section{
-    width: 100%;
+    width: 265px;
+    padding: 10px;
     min-height: 50px;
 }
 .score-board{
-    width: 1600px;
+    /* width: 400px; */
     margin: 0 auto;
     color: var(--color1);
 }

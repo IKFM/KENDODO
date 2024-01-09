@@ -84,8 +84,6 @@ main{
     position: absolute;
     top: 0px;
     padding-left: 20px;
-    /* margin-top: 200px;
-    margin-right: 0; */
     margin: 200px 0 0 auto;
     background-image: url('../svg/silhouette_gradation.svg'); /* 背景画像のパスを指定 */
     background-size: 100% 100%; /* ウィンドウサイズに合わせて伸縮する */
@@ -99,8 +97,6 @@ main{
     position: absolute;
     top: 30px;
     padding-left: 40px;
-    /* margin-top: 200px;
-    margin-right: 0; */
     margin: 200px 0 0 auto;
     background-image: url('../svg/silhouette_line.svg'); /* 背景画像のパスを指定 */
     background-size: 100% 100%; /* ウィンドウサイズに合わせて伸縮する */
@@ -526,7 +522,7 @@ footer {
         margin-bottom: 20px;
     }
 
-    .about{
+    .instructions-section .about{
         margin: 0 auto;
     }
 
