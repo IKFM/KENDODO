@@ -37,10 +37,11 @@ header {
     overflow: hidden;
     background-color: rgba(51, 51, 102, 0.5);
     backdrop-filter: blur(10px);
+    box-shadow: 0px 8px 30px rgba(60, 60, 129, 0.5);
     z-index: 1000;
 }
 .header-section{
-    width: 1450px; 
+    width: 1720px; 
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -62,9 +63,9 @@ ul{
 
 /* メイン部 */
 .main-section{
-    width: 1450px;
+    width: 1720px;
     height: auto; 
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 main {
@@ -74,24 +75,25 @@ main {
 
 .lesson-area{
     display: flex;
-    min-height: 550px;
+    min-height: 720px;
     column-gap: normal;
 }
 
 /* 左部 お手本動画側 */
 .left-group{
-    margin: 0 auto 0 0;
+    margin: 0;
 }
 /* セレクトボックス */
 .select-item select{
     /* セレクトボックスの幅(動画サイズに合わせる) */
-    width: 640px;
+    width: 720px;
     text-align-last: center;
 }
 .select-movie1 {
     overflow: hidden;
-    width: 640px;
+    width: 720px;
     text-align: center;
+    
 }
 .select-movie1 select {
     width: 100%;
@@ -145,7 +147,8 @@ main {
 
 /* 右部 Webカメラ側 */
 .right-group{
-    margin: 0 auto;
+    width: 720px;
+    margin: 0 10px 0 0;
 }
 .right-item{
     margin-left: 0;
@@ -160,8 +163,8 @@ button{
     line-height: 55px;
     align-items: center;
     display: flex;
-    padding: 0 20px;
-    margin-right: 6px;
+    padding: 0 50px;
+    margin-right: 25px;
     background-color: var(--color);
     color: var(--color1);
     font-size: 20px;
@@ -192,7 +195,7 @@ video {
     top: 0;
     left: 0; 
     width: 100%;
-    height: auto; 
+    height: 540px;
     z-index: 1; /* canvasより下に配置する */
 }
 /* canvas要素のスタイル */
@@ -205,13 +208,29 @@ canvas {
 
 /* スコアボード */
 .score-section{
-    width: 100%;
+    position: relative;
+    width: 265px;
+    padding: 10px;
     min-height: 50px;
 }
 .score-board{
-    width: 1450px;
-    margin: 0 auto;
+    /* width: 400px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 200px;
     color: var(--color1);
+    font-size: 50px;
+    text-align: right;
+}
+
+.score-board td{
+    padding-bottom: 30px;
+}
+
+.score-board .score-count{
+    width: 200px;
 }
 
 /* フッター */
