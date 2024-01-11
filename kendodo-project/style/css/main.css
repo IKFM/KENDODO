@@ -208,14 +208,29 @@ canvas {
 
 /* スコアボード */
 .score-section{
+    position: relative;
     width: 265px;
     padding: 10px;
     min-height: 50px;
 }
 .score-board{
     /* width: 400px; */
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 200px;
     color: var(--color1);
+    font-size: 50px;
+    text-align: right;
+}
+
+.score-board td{
+    padding-bottom: 30px;
+}
+
+.score-board .score-count{
+    width: 200px;
 }
 
 /* フッター */
