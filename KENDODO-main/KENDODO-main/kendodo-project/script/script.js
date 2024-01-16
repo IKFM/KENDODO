@@ -65,7 +65,7 @@ posenet.load().then((net) => {
             processPoseData();
             video1.play();
             console.log('start!')
-        }}, 2000);
+        }}, 3000);
     });
 
     //停止ボタンの処理
@@ -263,5 +263,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         video1.onloadeddata = () => {
             resolve();
         };
+    });
+});
+
+
+
+// カウントダウン
+document.addEventListener("DOMContentLoaded", function () {
+    // カウントダウンの秒数
+    var countdownSeconds = 3;
+    
+    // 動画の再生状態
+    var isCountdown = false;
+
+    // カウントダウン表示用の要素
+    var countdownContainer = document.getElementById("countdown-container");
+
+    // カウントダウン関数
+    function startCountdown() {
+        var secondsRemaining = countdownSeconds;
+
+        function updateCountdown() {
+            countdownContainer.textContent = secondsRemaining;
+            secondsRemaining--;
+
+            if (secondsRemaining < 0) {
+                // カウントダウン終了時の処理
+                countdownContainer.style.display = "none";
+                isCountdown = true;
+            } else {
+                setTimeout(updateCountdown, 1000); // 1秒ごとに更新
+            }
+        }
+
+        updateCountdown();
+    }
+
+    // カウントダウン開始ボタン
+    var startButton = document.getElementById("start_button");
+    startButton.addEventListener("click", function () {
+        // 動画が再生中でない場合のみ実行
+        if (!isProcessing) {
+            // カウントダウン表示用の要素を表示
+            console.log(videoSelect.value);
+            countdownContainer.style.display = "block";
+
+            // カウントダウン開始
+            startCountdown();
+        }
     });
 });

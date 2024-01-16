@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #countdown-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // カウントダウンの秒数
+            var countdownSeconds = 3;
+            
+            // 動画の再生状態
+            var videoPlaying = false;
+
+            // カウントダウン表示用の要素
+            var countdownContainer = document.getElementById("countdown-container");
+
+            // カウントダウン関数
+            function startCountdown() {
+                var secondsRemaining = countdownSeconds;
+
+                function updateCountdown() {
+                    countdownContainer.textContent = secondsRemaining;
+                    secondsRemaining--;
+
+                    if (secondsRemaining < 0) {
+                        // カウントダウン終了時の処理（例: 動画再生開始）
+                        countdownContainer.style.display = "none";
+                        videoPlaying = true;
+                        // ここに動画再生のコードを追加
+                    } else {
+                        setTimeout(updateCountdown, 1000); // 1秒ごとに更新
+                    }
+                }
+
+                updateCountdown();
+            }
+
+            // カウントダウン開始ボタン
+            var startButton = document.getElementById("start-button");
+            startButton.addEventListener("click", function () {
+                // 動画が再生中でない場合のみ実行
+                if (!videoPlaying) {
+                    // カウントダウン表示用の要素を表示
+                    countdownContainer.style.display = "block";
+
+                    // カウントダウン開始
+                    startCountdown();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- カウントダウン開始ボタン -->
+    <button id="start-button">カウントダウン開始</button>
+
+    <!-- カウントダウン表示用の要素 -->
+    <div id="countdown-container"></div>
+</body>
+</html>

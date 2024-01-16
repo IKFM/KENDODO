@@ -10,6 +10,52 @@
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // カウントダウンの秒数
+            var countdownSeconds = 3;
+            
+            // 動画の再生状態
+            var isCountdown = false;
+
+            // カウントダウン表示用の要素
+            var countdownContainer = document.getElementById("countdown-container");
+
+            // カウントダウン関数
+            function startCountdown() {
+                var secondsRemaining = countdownSeconds;
+
+                function updateCountdown() {
+                    countdownContainer.textContent = secondsRemaining;
+                    secondsRemaining--;
+
+                    if (secondsRemaining < 0) {
+                        // カウントダウン終了時の処理
+                        countdownContainer.style.display = "none";
+                        isCountdown = true;
+                    } else {
+                        setTimeout(updateCountdown, 1000); // 1秒ごとに更新
+                    }
+                }
+
+                updateCountdown();
+            }
+
+            // カウントダウン開始ボタン
+            var startButton = document.getElementById("start_button");
+            startButton.addEventListener("click", function () {
+                // 動画が再生中でない場合のみ実行
+                if (!isProcessing || videoSelect.value === '0') {
+                    // カウントダウン表示用の要素を表示
+                    countdownContainer.style.display = "block";
+
+                    // カウントダウン開始
+                    startCountdown();
+                }
+            });
+        });
+    </script> -->
 </head>
 
 <body>
@@ -53,6 +99,8 @@
                             <canvas id="canvas1" width="720" height="540"></canvas>
                             <img id="img0" src="./style/images/kendo1.jpg" width="720" height="540">                            
                         </div>
+                        <!-- カウントダウン表示 -->
+                        <div id="countdown-container"></div>
                     </div>
                 </div>
                 
@@ -137,6 +185,9 @@
 
     <!-- JavaScript -->    
     <script src="./script/script.js"></script>
+
+
+    
 
 </body>
 </html>
