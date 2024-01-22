@@ -52,6 +52,8 @@ posenet.load().then((net) => {
     video1.addEventListener('ended', () => {
         isProcessing = false;
         video1.currentTime = 0;// 動画の再生位置を一番最初に戻す
+        score = 0;
+        score_counter = 0;
         clear_score = true;
     });
     function resetCounters() {
@@ -154,20 +156,28 @@ posenet.load().then((net) => {
         const averageScore = Math.ceil(score / 10);
         console.log(`Average Score: ${averageScore}`);
     
-        if (averageScore >= 0 && averageScore <= 60) {
+        if (averageScore >= 0 && averageScore <= 30) {
             console.log('優');
             incrementCounter('great');
-        } else if (averageScore <= 70) {
+        } else if (averageScore <= 45) {
             console.log('良');
             incrementCounter('good');
-        } else if (averageScore <= 78) {
+        } else if (averageScore <= 50) {
             console.log('可');
             incrementCounter('better');
         } else {
             console.log('不可');
-            incrementCounter('none');
         }
     }
+    
+    function incrementCounter(counterId) {
+        const counterElement = document.getElementById(counterId);
+        if (counterElement) {
+            const currentCount = parseInt(counterElement.innerText, 10) || 0;
+            counterElement.innerText = currentCount + 1;
+        }
+    }
+    
     
     function incrementCounter(counterId) {
         const counterElement = document.getElementById(counterId);
