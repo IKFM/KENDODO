@@ -239,6 +239,11 @@ canvas {
     font-size: 50px;
     text-align: right;
 }
+.score-board h1{
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 50px;
+}
 
 .score-board td{
     padding-bottom: 30px;
