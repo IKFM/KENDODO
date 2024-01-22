@@ -154,29 +154,20 @@ posenet.load().then((net) => {
         const averageScore = Math.ceil(score / 10);
         console.log(`Average Score: ${averageScore}`);
     
-        if (averageScore >= 0 && averageScore <= 30) {
+        if (averageScore >= 0 && averageScore <= 60) {
             console.log('優');
             incrementCounter('great');
-        } else if (averageScore <= 45) {
+        } else if (averageScore <= 70) {
             console.log('良');
             incrementCounter('good');
-        } else if (averageScore <= 50) {
+        } else if (averageScore <= 78) {
             console.log('可');
             incrementCounter('better');
         } else {
             console.log('不可');
-            incrementCounter('great');
+            incrementCounter('none');
         }
     }
-    
-    function incrementCounter(counterId) {
-        const counterElement = document.getElementById(counterId);
-        if (counterElement) {
-            const currentCount = parseInt(counterElement.innerText, 10) || 0;
-            counterElement.innerText = currentCount + 1;
-        }
-    }
-    
     
     function incrementCounter(counterId) {
         const counterElement = document.getElementById(counterId);
